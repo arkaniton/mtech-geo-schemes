@@ -91,11 +91,6 @@
   .sec-title{font-size:32px;margin-bottom:8px}
   .sec-sub{color:var(--ink-2);font-size:16px;margin-bottom:30px;max-width:42em}
   .card-pad{padding:26px 28px}
-  .metricrow{display:flex;flex-wrap:wrap;gap:34px;padding:4px 2px}
-  .metricrow .m .v{font-size:30px;font-weight:500}
-  .metricrow .m .l{font-size:13px;color:var(--ink-3);margin-top:4px}
-  .praise-blame{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
-  .pb-list{font-size:14px;line-height:2;color:var(--ink-2)}
   .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .gap-card{padding:20px 22px}
   .gap-card .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
@@ -149,16 +144,7 @@
   .suggest button:hover{background:rgba(109,94,245,.06)}
   .suggest .nm{font-weight:600}.suggest .ad{font-size:13px;color:var(--ink-2)}
   .suggest .pin{width:34px;height:34px;flex:none;border-radius:10px;background:linear-gradient(150deg,rgba(154,142,248,.25),rgba(192,38,211,.15))}
-  /* loading */
-  .loadcard{padding:30px 32px;text-align:center;margin-top:28px}
-  .spin{width:42px;height:42px;border-radius:50%;border:3px solid rgba(109,94,245,.2);border-top-color:var(--violet);margin:0 auto 16px;animation:sp 1s linear infinite}
-  @keyframes sp{to{transform:rotate(360deg)}}
-  .loadcard h3{font-size:20px;margin-bottom:6px}
-  .loadcard .lsub{font-size:14px;color:var(--ink-2);margin-bottom:20px}
-  .tgbox{background:rgba(109,94,245,.07);border:1px solid rgba(109,94,245,.18);border-radius:16px;padding:18px;text-align:left;max-width:460px;margin:0 auto}
-  .tgbox .tt{font-size:15px;font-weight:600;color:#4a3ac0;margin-bottom:4px}
-  .tgbox .ts{font-size:13px;color:var(--ink-2);margin-bottom:12px}
-  .tgrow{display:flex;gap:8px;flex-wrap:wrap}
+
   /* audit */
   .orghead{display:flex;align-items:center;gap:14px;margin-top:2px;margin-bottom:8px}
   .orghead .pin{width:46px;height:46px;border-radius:13px;background:linear-gradient(150deg,var(--violet),var(--magenta));flex:none}
@@ -179,16 +165,35 @@
   .summary b{color:var(--coral)}
   .actions{display:flex;gap:12px;margin-top:24px;align-items:center;flex-wrap:wrap}
   .back{color:var(--ink-2);cursor:pointer;font-size:14px;font-weight:600}
-  /* survey */
-  .qcard{padding:28px 30px}
-  .q{margin:22px 0}.q:first-of-type{margin-top:8px}
-  .q .ql{font-size:15px;font-weight:600;margin-bottom:10px}
+
+  /* SCAN LOADING + OVERLAY */
+  .scanstage{position:relative;margin-top:20px}
+  .skel{filter:blur(9px);opacity:.5;pointer-events:none;user-select:none}
+  .skelbar{height:16px;border-radius:8px;background:rgba(28,18,51,.1);margin:10px 0}
+  .scanbar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin:0 0 8px}
+  .scanbar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--magenta));transition:width .3s linear}
+  .scantxt{text-align:center;font-size:14px;color:var(--ink-2);margin-bottom:6px}
+  .overlay{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:20px;
+    background:rgba(26,19,48,.28);backdrop-filter:blur(4px)}
+  .overlay.on{display:flex}
+  .omodal{width:100%;max-width:480px;padding:28px;border-radius:22px;background:#fff;box-shadow:0 30px 80px rgba(40,20,90,.3);animation:pop .3s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+  .omodal .otag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet);font-weight:700;margin-bottom:8px}
+  .omodal h3{font-size:22px;margin-bottom:6px}
+  .omodal .osub{font-size:14px;color:var(--ink-2);margin-bottom:18px}
+  .q{margin:16px 0}.q .ql{font-size:14px;font-weight:600;margin-bottom:9px}
   .opts{display:flex;gap:8px;flex-wrap:wrap}
-  .opt{font-size:14px;padding:11px 18px;border-radius:12px;border:1.5px solid var(--line-2);background:#fff;cursor:pointer;transition:.15s;font-family:inherit;color:var(--ink)}
+  .opt{font-size:14px;padding:10px 16px;border-radius:11px;border:1.5px solid var(--line-2);background:#fff;cursor:pointer;transition:.15s;font-family:inherit;color:var(--ink)}
   .opt:hover{border-color:var(--violet-2)}
   .opt.on{background:linear-gradient(135deg,var(--violet),var(--violet-2));color:#fff;border-color:transparent}
-  .qwhy{font-size:12.5px;color:var(--ink-3);margin-top:8px;display:flex;gap:7px}
-  /* lead */
+  .omodal input{width:100%;font-family:inherit;font-size:15px;padding:13px 15px;border-radius:12px;border:1.5px solid var(--line-2);background:#fff;color:var(--ink);outline:none}
+  .omodal input:focus{border-color:var(--violet-2)}
+  .odismiss{display:block;width:100%;text-align:center;margin-top:14px;font-size:13px;color:var(--ink-3);background:none;border:0;cursor:pointer;font-family:inherit}
+  .osent{display:none;text-align:center;padding:8px 0}
+  .osent.on{display:block}
+  .osent .okic{width:56px;height:56px;border-radius:17px;margin:0 auto 14px;background:linear-gradient(135deg,var(--teal),#059669);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px}
+
+  /* tariff + lead */
   .tariffs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
   .tariff{padding:20px;border-radius:16px;border:1.5px solid var(--line-2);background:#fff;cursor:pointer;position:relative;transition:.15s}
   .tariff:hover{border-color:var(--violet-2)}
@@ -202,56 +207,48 @@
   .leadform .full{grid-column:1/-1}
   .leadform input{width:100%;font-family:inherit;font-size:15px;padding:14px 16px;border-radius:12px;border:1px solid var(--line-2);background:#fff;color:var(--ink);outline:none}
   .leadform input:focus{border-color:var(--violet-2)}
+  .prefill{font-size:12.5px;color:var(--teal);margin-top:6px;font-weight:500}
   .fine{font-size:12.5px;color:var(--ink-3);margin-top:12px;text-align:center}
   .donebox{text-align:center;padding:44px 20px;display:none}
   .donebox.on{display:block}
   .okic{width:64px;height:64px;border-radius:20px;margin:0 auto 18px;background:linear-gradient(135deg,var(--teal),#059669);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px}
 
-  /* ---------- DASHBOARD ---------- */
-  .dash-shell{max-width:1180px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-template-columns:230px 1fr;gap:20px}
-  .side{padding:20px 16px;position:sticky;top:80px;align-self:start}
-  .side .who{display:flex;align-items:center;gap:11px;margin-bottom:18px;padding:0 6px}
-  .avatar{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#c9b8ff,#ffccbb);display:flex;align-items:center;justify-content:center;font-weight:700;color:#4a3ac0;flex:none}
-  .side .who .nm{font-weight:600;font-size:14px}.side .who .sub{font-size:12px;color:var(--ink-3)}
-  .snav{display:flex;flex-direction:column;gap:3px}
-  .snav button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font-family:inherit;font-size:14px;color:var(--ink-2);background:transparent;border:0;border-radius:11px;padding:11px 13px;cursor:pointer;transition:.13s}
-  .snav button:hover{background:rgba(109,94,245,.06)}
-  .snav button.on{background:#fff;color:var(--ink);font-weight:600;box-shadow:var(--shadow-sm)}
-  .snav .ico{width:8px;height:8px;border-radius:3px;background:currentColor;opacity:.55;flex:none}
-  .side .backl{margin-top:18px;font-size:13px;color:var(--ink-2);cursor:pointer;padding:0 6px}
-  .dpanel{display:none}.dpanel.on{display:block}
-  .dhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
-  .dhead h2{font-size:22px}.dhead .dt{font-size:13px;color:var(--ink-3)}
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .grid-4{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .bigscore{padding:26px 28px;border-radius:22px;position:relative;overflow:hidden;
+  /* ---------- DASHBOARD (single screen) ---------- */
+  .dash-wrap{max-width:920px;margin:0 auto;padding:8px 24px 70px}
+  .dash-id{display:flex;align-items:center;gap:12px;margin:6px 0 20px}
+  .avatar{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#c9b8ff,#ffccbb);display:flex;align-items:center;justify-content:center;font-weight:700;color:#4a3ac0;flex:none}
+  .dash-id .nm{font-weight:700;font-size:17px}.dash-id .sub{font-size:13px;color:var(--ink-3)}
+  .bigscore{padding:26px 28px;border-radius:22px;position:relative;overflow:hidden;margin-bottom:14px;
     background:radial-gradient(130% 140% at 12% 4%,#c4ead2 0,transparent 58%),radial-gradient(130% 140% at 96% 96%,#f3e8a6 0,transparent 55%),linear-gradient(135deg,#d9f0e2,#eff4da)}
-  .stat{padding:20px 22px}
-  .stat .v{font-size:29px;font-weight:500}
-  .stat .l{font-size:13px;color:var(--ink-3);margin-top:4px}
-  .section-h{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:20px 0 12px;font-weight:600}
-  .mbar{display:flex;align-items:center;gap:12px;margin-bottom:13px}
-  .mbar .nm{width:96px;font-size:14px;color:var(--ink-2)}
-  .mbar .track{flex:1;height:9px;border-radius:5px;background:rgba(28,18,51,.06);overflow:hidden}
-  .mbar .track span{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--violet-2),var(--violet))}
-  .mbar .pct{width:48px;text-align:right;font-size:13px}
+  .mrow4{display:flex;flex-wrap:wrap;gap:30px;padding:6px 4px;margin-bottom:24px}
+  .mrow4 .m .v{font-size:28px;font-weight:500}
+  .mrow4 .m .l{font-size:12.5px;color:var(--ink-3);margin-top:3px}
+  .section-h{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+  .section-h .r{text-transform:none;letter-spacing:0;color:var(--ink-3);font-weight:400}
   .task-full{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
   .task-full:first-of-type{border-top:0}
   .task-full .no{font-size:12px;color:var(--ink-3);padding-top:3px;width:16px}
   .task-full .body h3{font-size:15px;margin-bottom:3px}
   .task-full .body p{font-size:13px;color:var(--ink-2);margin-bottom:6px}
   .task-full .src{font-size:11px;color:var(--ink-3);letter-spacing:.02em}
+  .mbar{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+  .mbar .nm{width:96px;font-size:14px;color:var(--ink-2)}
+  .mbar .track{flex:1;height:9px;border-radius:5px;background:rgba(28,18,51,.06);overflow:hidden}
+  .mbar .track span{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--violet-2),var(--violet))}
+  .mbar .pct{width:48px;text-align:right;font-size:13px}
+  .seg4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .seg{padding:16px 18px;border-radius:16px}
+  .seg .v{font-size:26px;font-weight:500}
+  .seg .l{font-size:12.5px;color:var(--ink-3);margin-top:6px}
+  .mt{margin-top:24px}
 
   @media(max-width:900px){
     .hero{grid-template-columns:1fr;gap:28px;padding:34px 0}
     .hero h1{font-size:38px}
-    .split,.praise-blame,.grid-2,.grid-3,.grid-4,.audit,.tariffs,.leadform{grid-template-columns:1fr}
+    .split,.audit,.tariffs,.leadform,.seg4{grid-template-columns:1fr}
     .steps{grid-template-columns:1fr 1fr}.prices{grid-template-columns:1fr}
-    .dash-shell{grid-template-columns:1fr}.side{position:static}
-    .snav{flex-direction:row;overflow-x:auto}.side .who{margin-bottom:12px}
   }
-  @media(max-width:520px){.hero h1{font-size:31px}.steps{grid-template-columns:1fr}.fcenter h2{font-size:26px}}
+  @media(max-width:520px){.hero h1{font-size:31px}.steps{grid-template-columns:1fr}.fcenter h2{font-size:26px}.seg4{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -273,7 +270,7 @@
     <p class="lede">На неявках и тех, кто не вернулся. Подключите YClients — покажем сумму и кому написать, чтобы вернуть.</p>
     <div class="scan">
       <div class="scanrow">
-        <input class="inp" id="heroInput" placeholder="Ссылка на карточку в Яндексе" aria-label="Ссылка на карточку">
+        <input class="inp" placeholder="Ссылка на карточку в Яндексе" aria-label="Ссылка на карточку">
         <button class="btn btn-primary" onclick="openFun()">Разобрать мой салон</button>
       </div>
       <div class="hint">Например: yandex.ru/maps/org/ваш-салон/1234567890</div>
@@ -352,191 +349,177 @@
   <button class="btn btn-ghost" onclick="closeAll()">← На главную</button>
 </div></div></nav>
 <div class="fun-wrap">
-  <div class="progress"><i class="cur" data-s="1"></i><i data-s="2"></i><i data-s="3"></i><i data-s="4"></i></div>
-  <div class="steplabel" id="steplabel">Шаг 1 из 4 · Найдите свой салон</div>
+  <div class="progress"><i class="cur" data-s="1"></i><i data-s="2"></i><i data-s="3"></i></div>
+  <div class="steplabel" id="steplabel">Шаг 1 из 3 · Найдите свой салон</div>
 
-  <!-- STEP 1 -->
+  <!-- STEP 1: SEARCH -->
   <section class="fstep on" data-step="1">
-    <div class="fcenter"><h2>Найдите свой салон</h2><p>Вставьте ссылку на карточку — за 40 секунд покажем, на что жалуются ваши клиенты и где спит выручка.</p></div>
+    <div class="fcenter"><h2>Найдите свой салон</h2><p>Вставьте ссылку на карточку — соберём разбор: на что жалуются клиенты и где спит выручка.</p></div>
     <div class="search"><input id="q" placeholder="Ссылка на Яндекс.Картах или название" autocomplete="off"></div>
     <div class="hint" style="margin-top:9px">Например: yandex.ru/maps/org/ваш-салон/1234567890 · или начните вводить название</div>
     <div class="glass suggest" id="suggest" style="display:none"></div>
   </section>
 
-  <!-- LOADING -->
-  <section class="fstep" data-step="load">
-    <div class="glass loadcard">
-      <div class="spin"></div>
-      <h3>Собираем разбор вашего салона</h3>
-      <div class="lsub">Читаем отзывы и карточку — обычно это занимает до 40 секунд.</div>
-      <div class="tgbox">
-        <div class="tt">Не ждите у экрана</div>
-        <div class="ts">Оставьте телеграм — пришлём готовый разбор в личные сообщения, как только будет готов.</div>
-        <div class="tgrow">
-          <input class="inp" id="tg1" placeholder="@ваш телеграм" style="background:#fff">
-          <button class="btn btn-primary" onclick="tgSaved('tg1')">Прислать в телеграм</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STEP 2: AUDIT -->
+  <!-- STEP 2: SCANNING (30s) with overlay -->
   <section class="fstep" data-step="2">
-    <div class="orghead"><span class="pin"></span><div><h2 id="a-name">—</h2><div class="ad" id="a-addr">—</div></div></div>
-    <p style="color:var(--ink-2);font-size:15px">Просканировали карточку в геосервисах. Вот что видно снаружи и где вы проседаете:</p>
-    <div class="audit glass-sm" style="background:transparent;box-shadow:none;border:0;padding:0" id="audit"></div>
-    <div class="summary" id="summary"></div>
-    <div class="actions">
-      <button class="btn btn-primary" onclick="goFun(3)">Дальше — настроим под вас →</button>
-      <span class="back" onclick="goFun(1)">← назад</span>
-    </div>
-  </section>
-
-  <!-- STEP 3: ONBOARDING SURVEY -->
-  <section class="fstep" data-step="3">
-    <div class="fcenter"><h2>Настроим под ваш салон</h2><p>Два вопроса — поймём, с чего начать именно с вами. Это нужно нам для онбординга.</p></div>
-    <div class="glass qcard">
-      <div class="q"><div class="ql">Сколько у вас точек?</div>
-        <div class="opts" data-group="pts"><button class="opt" onclick="pick(this)">Одна</button><button class="opt" onclick="pick(this)">2–5</button><button class="opt" onclick="pick(this)">6 и больше</button></div></div>
-      <div class="q"><div class="ql">Какая у вас CRM?</div>
-        <div class="opts" data-group="crm"><button class="opt" onclick="pick(this)">YClients</button><button class="opt" onclick="pick(this)">Другая</button><button class="opt" onclick="pick(this)">Пока нет</button></div>
-        <div class="qwhy"><span>↳</span><span>По CRM видно, что покажем сразу, а что после переноса базы.</span></div></div>
-      <div class="q"><div class="ql">Куда прислать разбор?</div>
-        <div class="tgrow"><input class="inp" id="tg2" placeholder="@ваш телеграм" style="background:#fff;max-width:300px"><button class="btn btn-ghost" onclick="tgSaved('tg2')">Сохранить</button></div>
-        <div class="qwhy"><span>↳</span><span>Пришлём разбор один раз. Без регулярных сообщений.</span></div></div>
-    </div>
-    <div class="actions"><button class="btn btn-primary" onclick="goFun(4)">Показать тариф →</button><span class="back" onclick="goFun(2)">← назад</span></div>
-  </section>
-
-  <!-- STEP 4: TARIFF + LEAD -->
-  <section class="fstep" data-step="4">
-    <div id="offer">
-      <div class="fcenter"><h2 id="offerTitle">Ваш тариф</h2><p id="offerSub">Начать можно с месяца, без обязательств.</p></div>
-      <div class="tariffs" id="tariffs">
-        <div class="tariff" data-t="1"><div class="term">1 месяц</div><div class="permo num">13 000 ₽<small>/мес</small></div><div class="tot">без обязательств</div></div>
-        <div class="tariff sel" data-t="6"><span class="best">Популярный</span><div class="term">6 месяцев</div><div class="permo num">11 000 ₽<small>/мес</small></div><div class="tot">66 000 ₽ · −15%</div></div>
-        <div class="tariff" data-t="12"><div class="term">12 месяцев</div><div class="permo num">9 500 ₽<small>/мес</small></div><div class="tot">114 000 ₽ · −27%</div></div>
+    <div class="scantxt" id="scantxt">Собираем разбор вашего салона — это займёт около 30 секунд</div>
+    <div class="scanbar"><span id="scanfill"></span></div>
+    <div class="scanstage">
+      <div class="glass card-pad skel">
+        <div class="skelbar" style="width:40%"></div>
+        <div class="audit" style="margin:14px 0">
+          <div class="metric glass-sm"><div class="skelbar" style="width:60%"></div><div class="skelbar" style="width:35%;height:26px"></div></div>
+          <div class="metric glass-sm"><div class="skelbar" style="width:55%"></div><div class="skelbar" style="width:30%;height:26px"></div></div>
+          <div class="metric glass-sm"><div class="skelbar" style="width:50%"></div><div class="skelbar" style="width:40%;height:26px"></div></div>
+          <div class="metric glass-sm"><div class="skelbar" style="width:65%"></div><div class="skelbar" style="width:32%;height:26px"></div></div>
+        </div>
+        <div class="skelbar" style="width:90%"></div>
       </div>
-      <form class="leadform" id="lead" novalidate>
-        <input class="full" name="name" placeholder="Ваше имя" required>
-        <input name="contact" id="leadContact" placeholder="Телефон или Telegram" required>
-        <div class="full"><button class="btn btn-primary wide" type="submit">Оставить заявку</button></div>
-      </form>
-      <div class="fine">Свяжемся в течение рабочего дня. Без спама.</div>
-      <div class="actions" style="justify-content:center"><span class="back" onclick="goFun(3)">← назад</span></div>
     </div>
-    <div class="donebox glass" id="done" style="border-radius:24px">
-      <div class="okic">✓</div><h2 style="font-size:28px">Заявка принята</h2>
-      <p style="color:var(--ink-2);margin-top:8px" id="doneMsg">Собираем разбор и свяжемся с вами в течение дня.</p>
+  </section>
+
+  <!-- STEP 3: AUDIT RESULT -->
+  <section class="fstep" data-step="3">
+    <div class="orghead"><span class="pin"></span><div><h2 id="a-name">—</h2><div class="ad" id="a-addr">—</div></div></div>
+    <p style="color:var(--ink-2);font-size:15px">Просканировали карточку. Вот что видно снаружи, где вы проседаете — и что откроется после подключения YClients:</p>
+    <div class="audit" id="audit"></div>
+    <div class="summary" id="summary"></div>
+
+    <div class="glass card-pad" id="offerCard" style="margin-top:22px">
+      <div id="offer">
+        <h3 id="offerTitle" style="font-size:20px;margin-bottom:4px">Ваш тариф</h3>
+        <p id="offerSub" style="color:var(--ink-2);font-size:14px">Начать можно с месяца, без обязательств.</p>
+        <div class="tariffs" id="tariffs">
+          <div class="tariff" data-t="1"><div class="term">1 месяц</div><div class="permo num">13 000 ₽<small>/мес</small></div><div class="tot">без обязательств</div></div>
+          <div class="tariff sel" data-t="6"><span class="best">Популярный</span><div class="term">6 месяцев</div><div class="permo num">11 000 ₽<small>/мес</small></div><div class="tot">66 000 ₽ · −15%</div></div>
+          <div class="tariff" data-t="12"><div class="term">12 месяцев</div><div class="permo num">9 500 ₽<small>/мес</small></div><div class="tot">114 000 ₽ · −27%</div></div>
+        </div>
+        <form class="leadform" id="lead" novalidate>
+          <input class="full" name="name" placeholder="Ваше имя" required>
+          <input name="contact" id="leadContact" placeholder="Телефон или Telegram" required>
+          <div class="full"><button class="btn btn-primary wide" type="submit">Оставить заявку</button></div>
+        </form>
+        <div class="prefill" id="prefill" style="display:none">Телеграм подставили из ваших ответов — можно поправить.</div>
+        <div class="fine">Свяжемся в течение рабочего дня. Без спама.</div>
+      </div>
+      <div class="donebox" id="done">
+        <div class="okic">✓</div><h2 style="font-size:26px">Заявка принята</h2>
+        <p style="color:var(--ink-2);margin-top:8px" id="doneMsg">Собираем разбор и свяжемся с вами в течение дня.</p>
+      </div>
     </div>
+    <div class="actions" style="justify-content:center"><span class="back" onclick="closeAll()">← на главную</span></div>
   </section>
 </div>
 </div>
 
-<!-- ==================== DASHBOARD ==================== -->
+<!-- OVERLAY: don't wait — answer + telegram (single capture) -->
+<div class="overlay" id="overlay"><div class="omodal">
+  <div id="oform">
+    <div class="otag">Не ждите у экрана</div>
+    <h3>Ответьте на пару вопросов — пришлём разбор в телеграм</h3>
+    <div class="osub">Пока считаем ваш разбор, соберём то, что нужно для подключения. Займёт 20 секунд.</div>
+    <div class="q"><div class="ql">Сколько у вас точек?</div>
+      <div class="opts" data-group="pts"><button class="opt" onclick="pick(this)">Одна</button><button class="opt" onclick="pick(this)">2–5</button><button class="opt" onclick="pick(this)">6 и больше</button></div></div>
+    <div class="q"><div class="ql">Какая у вас CRM?</div>
+      <div class="opts" data-group="crm"><button class="opt" onclick="pick(this)">YClients</button><button class="opt" onclick="pick(this)">Другая</button><button class="opt" onclick="pick(this)">Пока нет</button></div></div>
+    <div class="q"><div class="ql">Ваш телеграм для разбора</div>
+      <input id="tgMain" placeholder="@ваш телеграм"></div>
+    <button class="btn btn-primary wide" style="margin-top:6px" onclick="sendOverlay()">Прислать разбор в телеграм</button>
+    <button class="odismiss" onclick="dismissOverlay()">Дождусь разбора здесь</button>
+  </div>
+  <div class="osent" id="osent">
+    <div class="okic">✓</div>
+    <h3 id="osentTitle">Готово — пришлём разбор в телеграм</h3>
+    <p style="font-size:14px;color:var(--ink-2);margin-top:6px" id="osentSub">Как только досчитаем, отправим в личные сообщения. Можно закрыть вкладку.</p>
+    <button class="btn btn-ghost wide" style="margin-top:16px" onclick="dismissOverlay()">Всё равно посмотреть разбор здесь</button>
+  </div>
+</div></div>
+
+<!-- ==================== DASHBOARD (single screen) ==================== -->
 <div class="view-dash">
 <nav><div class="wrap"><div class="navbar glass-sm">
   <div class="logo"><span class="dot"></span><span>Демо-дашборд</span></div>
   <button class="btn btn-ghost" onclick="closeAll()">← На лендинг</button>
 </div></div></nav>
-<div class="dash-shell">
-  <aside class="glass side">
-    <div class="who"><div class="avatar">ДС</div><div><div class="nm">Демо-салон</div><div class="sub">Черёмушки</div></div></div>
-    <div class="snav">
-      <button class="on" onclick="dtab(this,'d-over')"><span class="ico"></span>Обзор</button>
-      <button onclick="dtab(this,'d-mast')"><span class="ico"></span>Мастера</button>
-      <button onclick="dtab(this,'d-task')"><span class="ico"></span>Задачи на день</button>
-    </div>
-    <div class="backl" onclick="closeAll()">← На лендинг</div>
-  </aside>
+<div class="dash-wrap">
+  <div class="dash-id"><div class="avatar">ДС</div><div><div class="nm">Демо-салон</div><div class="sub">Черёмушки · 17 июля, обновлено сегодня</div></div></div>
 
-  <main>
-    <!-- ОБЗОР -->
-    <div class="dpanel on" id="d-over">
-      <div class="dhead"><h2>Обзор</h2><span class="dt">17 июля · обновлено сегодня</span></div>
-      <div class="grid-2" style="margin-bottom:16px">
-        <div class="bigscore">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:13px;color:#2f6b4e">Перезапись</span><span class="chip chip-teal">4 недели роста</span></div>
-          <div style="display:flex;align-items:flex-start;gap:8px"><span style="font-size:48px;font-weight:500;line-height:1;color:#1c3d2c" class="num">18,2%</span><span class="chip chip-teal" style="margin-top:8px">+3,4</span></div>
-          <div class="prog" style="margin-top:14px"><span style="width:73%"></span><i class="mark" style="left:59%"></i></div>
-          <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:#3a6b52"><span>июнь · 14,8%</span><span>цель · 25%</span></div>
-          <div style="font-size:13px;color:#2f6b4e;margin-top:12px">Каждый пункт — около 12 записей. До цели 82 записи.</div>
-        </div>
-        <div class="grid-4">
-          <div class="glass stat"><div class="v num">67,2%</div><div class="l">явка</div></div>
-          <div class="glass stat"><div class="v num">472</div><div class="l">клиента</div></div>
-          <div class="glass stat"><div class="v num">794</div><div class="l">визита</div></div>
-          <div class="glass stat"><div class="v num" style="color:var(--teal)">7<span style="font-size:17px;color:var(--ink-3)"> / 31</span></div><div class="l">вернулось за 30 дней</div></div>
-        </div>
-      </div>
-      <p class="section-h">Кто уходит — каждая цифра открывает список</p>
-      <div class="grid-3" style="margin-bottom:16px">
-        <div class="glass stat"><div class="v num">386</div><div class="l">не перезаписались · 1,6 млн ₽</div></div>
-        <div class="glass stat"><div class="v num">52</div><div class="l">топ-20% без записи · 597 тыс ₽</div></div>
-        <div class="glass stat"><div class="v num">456</div><div class="l">не оставили отзыв</div></div>
-      </div>
-      <div class="glass card-pad" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-        <div style="flex:1;min-width:200px"><h3 style="font-size:15px;margin-bottom:3px">Почему не возвращаются</h3><p style="font-size:13px;color:var(--ink-2)">Звукоизоляция · паспорт на входе · администраторы</p></div>
-        <button class="btn btn-ghost">Разбор</button>
-      </div>
-    </div>
+  <div class="glass bigscore">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:13px;color:#2f6b4e">Перезапись</span><span class="chip chip-teal">4 недели роста</span></div>
+    <div style="display:flex;align-items:flex-start;gap:8px"><span style="font-size:48px;font-weight:500;line-height:1;color:#1c3d2c" class="num">18,2%</span><span class="chip chip-teal" style="margin-top:8px">+3,4</span></div>
+    <div class="prog" style="margin-top:14px"><span style="width:73%"></span><i class="mark" style="left:59%"></i></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:#3a6b52"><span>июнь · 14,8%</span><span>следующая цель · 25%</span></div>
+    <div style="font-size:13px;color:#2f6b4e;margin-top:12px">Каждый пункт — около 12 записей в месяц. До цели 82 записи.</div>
+  </div>
 
-    <!-- МАСТЕРА -->
-    <div class="dpanel" id="d-mast">
-      <div class="dhead"><h2>Мастера</h2><span class="dt">загрузка и разрывы</span></div>
-      <div class="glass card-pad" style="margin-bottom:16px">
-        <p class="section-h" style="margin-top:0">Загрузка — доля занятого времени в расписании</p>
-        <div class="mbar"><span class="nm">Виктория</span><div class="track"><span style="width:81%"></span></div><span class="pct num">80,9%</span></div>
-        <div class="mbar"><span class="nm">Игорь Т.</span><div class="track"><span style="width:74%"></span></div><span class="pct num">74%</span></div>
-        <div class="mbar"><span class="nm">Полина</span><div class="track"><span style="width:54%"></span></div><span class="pct num">54%</span></div>
-        <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-          <p style="flex:1;min-width:200px;font-size:13.5px;color:var(--ink-2)">У Полины пусто 46% времени. Двенадцать её клиентов не были больше 40 дней.</p>
-          <button class="btn btn-primary">Написать им</button></div>
-      </div>
-      <p class="section-h">Разрывы — отзывы против явки</p>
-      <div class="grid-2">
-        <div class="glass gap-card"><div class="top"><h3 style="flex:1">Игорь Т.</h3><span class="chip chip-coral">★ 5,0 · явка 43,8%</span></div>
-          <p style="font-size:14px;color:var(--ink-2)">Восемь отзывов, все пятёрки. Половина записей к нему не доходит — главный разрыв салона.</p></div>
-        <div class="glass gap-card"><div class="top"><h3 style="flex:1">Сергей</h3><span class="chip chip-gray">0 отзывов · 107 визитов</span></div>
-          <p style="font-size:14px;color:var(--ink-2)">Сто семь визитов и ни одного отзыва. Клиенты довольны, но карточка об этом не знает.</p></div>
-      </div>
-    </div>
+  <div class="mrow4">
+    <div class="m"><div class="v num">67,2%</div><div class="l">явка</div></div>
+    <div class="m"><div class="v num">472</div><div class="l">клиента · 794 визита</div></div>
+    <div class="m"><div class="v num" style="color:var(--teal)">7 <span style="font-size:16px;color:var(--ink-3)">из 31</span></div><div class="l">вернулось за 30 дней</div></div>
+    <div class="m"><div class="v num">5,0</div><div class="l">карточка · 442 отзыва</div></div>
+  </div>
 
-    <!-- ЗАДАЧИ -->
-    <div class="dpanel" id="d-task">
-      <div class="dhead"><h2>Задачи на день</h2><span class="dt">4 задачи · тексты готовы · 95 200 ₽</span></div>
-      <div class="glass card-pad">
-        <div class="task-full"><span class="no num">1</span><div class="body" style="flex:1"><h3>Написать Марии П. · 26 500 ₽</h3><p>Ходила к Наталье раз в три недели. Наталья уволилась 2 июня. Не была 34 дня.</p><span class="src">источник · CRM: мастер × клиент</span></div><button class="btn btn-primary">Отправить</button></div>
-        <div class="task-full"><span class="no num">2</span><div class="body" style="flex:1"><h3>Попросить отзыв у 20 клиентов Сергея</h3><p>107 визитов, ни одного отзыва. Рейтинг вырастет, карточка поднимется.</p><span class="src">источник · CRM × карта</span></div><button class="btn btn-primary">Отправить</button></div>
-        <div class="task-full"><span class="no num">3</span><div class="body" style="flex:1"><h3>Написать 12 клиентам Полины про вторник</h3><p>У неё пусто 46% времени. Эти 12 не были больше 40 дней.</p><span class="src">источник · CRM: расписание × сегмент</span></div><button class="btn btn-primary">Отправить</button></div>
-        <div class="task-full"><span class="no num">4</span><div class="body" style="flex:1"><h3>Проверить ответ на отзыв от 16 июля</h3><p>Жалуется на звукоизоляцию. Черновик готов, нужна ваша правка.</p><span class="src">источник · карта: новый отзыв</span></div><button class="btn btn-ghost">Проверить</button></div>
-        <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:6px;display:flex;align-items:center;gap:10px"><span style="flex:1;font-size:14px;color:var(--ink-2)">Вчера сделано 4 из 4</span><span class="chip chip-teal">серия не прервана</span></div>
-      </div>
-    </div>
-  </main>
+  <div class="glass card-pad mt">
+    <div class="section-h"><span>Задачи на сегодня — это УТП</span><span class="r">4 · тексты готовы · 95 200 ₽</span></div>
+    <div class="task-full"><span class="no num">1</span><div class="body" style="flex:1"><h3>Написать Марии П. · 26 500 ₽</h3><p>Ходила к Наталье раз в три недели. Наталья уволилась 2 июня. Не была 34 дня.</p><span class="src">источник · CRM: мастер × клиент</span></div><button class="btn btn-primary">Отправить</button></div>
+    <div class="task-full"><span class="no num">2</span><div class="body" style="flex:1"><h3>Попросить отзыв у 20 клиентов Сергея</h3><p>107 визитов, ни одного отзыва. Рейтинг вырастет, карточка поднимется.</p><span class="src">источник · CRM × карта</span></div><button class="btn btn-primary">Отправить</button></div>
+    <div class="task-full"><span class="no num">3</span><div class="body" style="flex:1"><h3>Написать 12 клиентам Полины про вторник</h3><p>У неё пусто 46% времени. Эти 12 не были больше 40 дней.</p><span class="src">источник · CRM: расписание × сегмент</span></div><button class="btn btn-primary">Отправить</button></div>
+    <div class="task-full"><span class="no num">4</span><div class="body" style="flex:1"><h3>Проверить ответ на отзыв от 16 июля</h3><p>Жалуется на звукоизоляцию. Черновик готов, нужна ваша правка.</p><span class="src">источник · карта: новый отзыв</span></div><button class="btn btn-ghost">Проверить</button></div>
+    <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:6px;display:flex;align-items:center;gap:10px"><span style="flex:1;font-size:14px;color:var(--ink-2)">Вчера сделано 4 из 4</span><span class="chip chip-teal">серия не прервана</span></div>
+  </div>
+
+  <div class="section-h mt" style="margin-bottom:12px"><span>Разрывы — видно только на стыке карты и записей</span></div>
+  <div class="split">
+    <div class="glass gap-card"><div class="top"><h3 style="flex:1">Игорь Т.</h3><span class="chip chip-coral">★ 5,0 · явка 43,8%</span></div>
+      <p style="font-size:14px;color:var(--ink-2)">Восемь отзывов, все пятёрки. Половина записей к нему не доходит — главный разрыв салона.</p></div>
+    <div class="glass gap-card"><div class="top"><h3 style="flex:1">Сергей</h3><span class="chip chip-gray">0 отзывов · 107 визитов</span></div>
+      <p style="font-size:14px;color:var(--ink-2)">Сто семь визитов и ни одного отзыва. Клиенты довольны, но карточка об этом не знает.</p></div>
+  </div>
+
+  <div class="glass card-pad mt">
+    <div class="section-h"><span>Окна мастеров</span><span class="r">доля занятого времени в расписании</span></div>
+    <div class="mbar"><span class="nm">Виктория</span><div class="track"><span style="width:81%"></span></div><span class="pct num">80,9%</span></div>
+    <div class="mbar"><span class="nm">Игорь Т.</span><div class="track"><span style="width:74%"></span></div><span class="pct num">74%</span></div>
+    <div class="mbar"><span class="nm">Полина</span><div class="track"><span style="width:54%"></span></div><span class="pct num">54%</span></div>
+    <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <p style="flex:1;min-width:200px;font-size:13.5px;color:var(--ink-2)">У Полины пусто 46% времени. Двенадцать её клиентов не были больше 40 дней.</p>
+      <button class="btn btn-primary">Написать им</button></div>
+  </div>
+
+  <div class="section-h mt" style="margin-bottom:12px"><span>Кто уходит — каждая цифра открывает список</span></div>
+  <div class="seg4">
+    <div class="glass seg"><div class="v num">386</div><div class="l">не перезаписались · 1,6 млн ₽</div></div>
+    <div class="glass seg"><div class="v num">52</div><div class="l">топ-20% без записи · 597 тыс ₽</div></div>
+    <div class="glass seg"><div class="v num">793</div><div class="l">давно не были · 90–365 дней</div></div>
+    <div class="glass seg"><div class="v num">456</div><div class="l">не оставили отзыв</div></div>
+  </div>
+
+  <div class="glass card-pad mt" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+    <div style="flex:1;min-width:200px"><h3 style="font-size:15px;margin-bottom:3px">Почему не возвращаются</h3><p style="font-size:13px;color:var(--ink-2)">Звукоизоляция · паспорт на входе · администраторы</p></div>
+    <button class="btn btn-ghost">Разбор</button>
+  </div>
 </div>
 </div>
 
 <script>
   var $=function(s){return document.querySelector(s)};
   function scrTop(){window.scrollTo({top:0,behavior:'smooth'})}
-  function closeAll(){document.body.classList.remove('dash','fun');scrTop()}
+  var scanTimer=null,scanStart=0;
+  function closeAll(){document.body.classList.remove('dash','fun');$('#overlay').classList.remove('on');if(scanTimer){clearInterval(scanTimer);scanTimer=null}scrTop()}
   function openDash(){document.body.classList.remove('fun');document.body.classList.add('dash');scrTop()}
-  function openFun(){document.body.classList.remove('dash');document.body.classList.add('fun');goFun(1);scrTop()}
+  function openFun(){document.body.classList.remove('dash');document.body.classList.add('fun');resetFun();scrTop()}
 
-  function dtab(btn,id){
-    document.querySelectorAll('.snav button').forEach(function(b){b.classList.remove('on')});
-    document.querySelectorAll('.dpanel').forEach(function(p){p.classList.remove('on')});
-    btn.classList.add('on');document.getElementById(id).classList.add('on');
-  }
-
-  // ----- funnel data -----
+  // ----- data -----
   var ORGS=[
     {name:"SENSMOOD",addr:"Москва, Черёмушки · салон красоты",rating:4.6,fresh:9,answered:34,fill:72},
     {name:"Персона",addr:"Москва, Тверская · сеть салонов",rating:4.3,fresh:5,answered:12,fill:65},
     {name:"Beauty Bar",addr:"Санкт-Петербург, Невский · барбершоп",rating:4.7,fresh:22,answered:55,fill:80}
   ];
-  var q=$('#q'),sug=$('#suggest'),current=null;
+  var current=null, picks={}, tgValue='';
+  var SCAN_MS=30000;
+
+  // STEP 1 search
+  var q=$('#q'),sug=$('#suggest');
   function renderSug(list){
     if(!list.length){sug.style.display='none';return}
     sug.innerHTML=list.map(function(o){return '<button data-i="'+ORGS.indexOf(o)+'"><span class="pin"></span><span><span class="nm">'+o.name+'</span><br><span class="ad">'+o.addr+'</span></span></button>'}).join('');
@@ -550,9 +533,55 @@
     renderSug(m.length?m:[ORGS[0]]);
   });
 
-  function startScan(o){current=o;showStep('load');scrTop();setTimeout(function(){buildAudit(o);goFun(2)},2600)}
+  function resetFun(){
+    current=null;picks={};tgValue='';
+    q.value='';sug.style.display='none';
+    $('#offer').style.display='';$('#done').classList.remove('on');
+    $('#oform').style.display='';$('#osent').classList.remove('on');
+    $('#overlay').classList.remove('on');
+    $('#tgMain').value='';$('#leadContact').value='';$('#prefill').style.display='none';
+    document.querySelectorAll('.opt').forEach(function(o){o.classList.remove('on')});
+    goFun(1);
+  }
 
-  function st(v,g,m,inv){var a,b;if(inv){a=v<=g;b=v<=m}else{a=v>=g;b=v>=m}return a?'good':(b?'mid':'bad')}
+  // STEP 2 scanning + overlay
+  function startScan(o){
+    current=o;
+    goFun(2);
+    // show overlay shortly after scan starts
+    setTimeout(function(){ if(document.body.classList.contains('fun')) $('#overlay').classList.add('on'); },700);
+    var fill=$('#scanfill'); scanStart=Date.now();
+    if(scanTimer)clearInterval(scanTimer);
+    scanTimer=setInterval(function(){
+      var p=Math.min(1,(Date.now()-scanStart)/SCAN_MS);
+      fill.style.width=(p*100)+'%';
+      $('#scantxt').textContent = p<1 ? 'Собираем разбор вашего салона — готово на '+Math.round(p*100)+'%' : 'Разбор готов';
+      if(p>=1){clearInterval(scanTimer);scanTimer=null;revealAudit()}
+    },300);
+  }
+  function revealAudit(){
+    buildAudit(current);
+    $('#overlay').classList.remove('on');
+    goFun(3);
+  }
+
+  // overlay actions
+  function pick(el){
+    var g=el.parentElement.dataset.group;
+    el.parentElement.querySelectorAll('.opt').forEach(function(o){o.classList.remove('on')});
+    el.classList.add('on');picks[g]=el.textContent;
+  }
+  function sendOverlay(){
+    var tg=$('#tgMain').value.trim();
+    if(!picks.pts||!picks.crm||!tg){ if(!tg)$('#tgMain').focus(); return; }
+    tgValue=tg;
+    $('#osentTitle').textContent='Готово, '+tg+' — пришлём разбор в телеграм';
+    $('#oform').style.display='none';$('#osent').classList.add('on');
+  }
+  function dismissOverlay(){ $('#overlay').classList.remove('on'); if(!scanTimer && current){ if(!$('#audit').innerHTML) buildAudit(current); goFun(3);} }
+
+  // STEP 3 audit
+  function st(v,g,m){return v>=g?'good':(v>=m?'mid':'bad')}
   function metric(label,val,note,s,locked){
     var tag=s==='good'?'ОК':(s==='mid'?'Средне':'Слабо');
     if(locked)return '<div class="metric glass-sm locked"><div class="top"><span>'+label+'</span></div><div class="val num">'+val+'</div><div class="note">'+note+'</div><span class="lockpill">после YClients</span></div>';
@@ -561,54 +590,45 @@
   function buildAudit(o){
     $('#a-name').textContent=o.name;$('#a-addr').textContent=o.addr;
     var sR=st(o.rating,4.7,4.5),sF=st(o.fresh,20,10),sA=st(o.answered,60,40),sFl=st(o.fill,85,70);
-    var html=[
+    $('#audit').innerHTML=[
       metric('Рейтинг','★ '+o.rating.toFixed(1),'Салоны рядом — в среднем 4.8',sR),
       metric('Свежих отзывов за месяц',o.fresh,'Нужны новые каждую неделю',sF),
       metric('Ответы на отзывы',o.answered+'%','Без ответов карточка теряет доверие',sA),
       metric('Заполненность профиля',o.fill+'%','Услуги, фото, часы, описание',sFl),
-      metric('Перезапись','18,2%','Сколько клиентов вернулось — видно в YClients','',true),
+      metric('Перезапись','18,2%','Сколько клиентов вернулось','',true),
       metric('Спящая выручка','1,6 млн ₽','Кто не вернулся и на сколько','',true)
     ].join('');
-    $('#audit').innerHTML=html;
     var reds=[sR,sF,sA,sFl].filter(function(x){return x==='bad'}).length;
     var mids=[sR,sF,sA,sFl].filter(function(x){return x==='mid'}).length;
-    $('#summary').innerHTML='Нашли <b>'+(reds+mids)+' зон роста</b> снаружи ('+reds+' слабых, '+mids+' средних). Но главное — спящая выручка внутри YClients. Покажем её, когда подключите.';
-    $('#leadContact')&&($('#leadContact').value='');
+    $('#summary').innerHTML='Нашли <b>'+(reds+mids)+' зон роста</b> снаружи ('+reds+' слабых, '+mids+' средних). Главное — спящая выручка внутри YClients. Откроется после подключения.';
+    // tariff by answers
+    var crm=picks.crm,pts=picks.pts,t=$('#offerTitle'),su=$('#offerSub');
+    if(crm==='Пока нет'){t.textContent='Начнём с тарифа «Карта» — 7 000 ₽';su.textContent='Разбор отзывов и соседей без CRM. YClients подключим позже.'}
+    else if(crm==='Другая'){t.textContent='Тариф «Всё» — 13 000 ₽, с переносом базы';su.textContent='Перенесём базу и покажем спящую выручку.'}
+    else{t.textContent='Тариф «Всё» — 13 000 ₽';su.textContent='Подключим YClients и покажем спящую выручку поимённо.'}
+    if(pts==='6 и больше')su.textContent+=' Для сети посчитаем цену за филиал.';
+    // prefill telegram
+    if(tgValue){$('#leadContact').value=tgValue;$('#prefill').style.display='block'}
   }
 
-  // survey picks
-  var picks={};
-  function pick(el){
-    var g=el.parentElement.dataset.group;
-    el.parentElement.querySelectorAll('.opt').forEach(function(o){o.classList.remove('on')});
-    el.classList.add('on');picks[g]=el.textContent;
-  }
-  function tgSaved(id){var v=$('#'+id).value.trim();if(!v){$('#'+id).focus();return}$('#'+id).value='';$('#'+id).placeholder='Сохранено ✓ '+v}
-
-  // tariffs
+  // tariffs + lead
   document.querySelectorAll('#tariffs .tariff').forEach(function(t){t.addEventListener('click',function(){
     document.querySelectorAll('#tariffs .tariff').forEach(function(x){x.classList.remove('sel')});t.classList.add('sel')})});
   $('#lead').addEventListener('submit',function(e){
     e.preventDefault();
     var n=$('#lead [name=name]'),c=$('#lead [name=contact]');
     if(!n.value.trim()||!c.value.trim()){(!n.value.trim()?n:c).focus();return}
-    $('#offer').style.display='none';$('#done').classList.add('on');scrTop();
+    $('#offer').style.display='none';$('#done').classList.add('on');
+    $('#doneMsg').textContent = tgValue ? 'Разбор пришлём в телеграм '+tgValue+' и свяжемся по заявке в течение дня.' : 'Собираем разбор и свяжемся с вами в течение дня.';
+    scrTop();
   });
 
-  // steps
-  var LBL={1:'Найдите свой салон',2:'Разбор карточки',3:'Настроим под вас',4:'Тариф и заявка'};
-  function showStep(key){document.querySelectorAll('.fstep').forEach(function(s){s.classList.toggle('on',s.dataset.step===String(key))})}
+  // steps nav
+  var LBL={1:'Найдите свой салон',2:'Собираем разбор',3:'Ваш разбор и тариф'};
   function goFun(n){
-    showStep(n);
+    document.querySelectorAll('.fstep').forEach(function(s){s.classList.toggle('on',+s.dataset.step===n)});
     document.querySelectorAll('.progress i').forEach(function(i){var s=+i.dataset.s;i.classList.toggle('done',s<n);i.classList.toggle('cur',s===n)});
-    $('#steplabel').textContent='Шаг '+n+' из 4 · '+LBL[n];
-    if(n===4){
-      var crm=picks.crm,pts=picks.pts,t=$('#offerTitle'),su=$('#offerSub');
-      if(crm==='Пока нет'){t.textContent='Начнём с тарифа «Карта» — 7 000 ₽';su.textContent='Разбор отзывов и соседей без CRM. YClients подключим, когда будете готовы.'}
-      else if(crm==='Другая'){t.textContent='Тариф «Всё» — 13 000 ₽, с переносом базы';su.textContent='Перенесём вашу базу и покажем спящую выручку.'}
-      else{t.textContent='Тариф «Всё» — 13 000 ₽';su.textContent='Подключим YClients и покажем спящую выручку поимённо.'}
-      if(pts==='6 и больше')su.textContent+=' Для сети посчитаем цену за филиал.';
-    }
+    $('#steplabel').textContent='Шаг '+n+' из 3 · '+LBL[n];
     scrTop();
   }
 </script>
