@@ -8,511 +8,608 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --bg:#E9E9ED; --bg2:#EFEFF3;
-    --glass:rgba(255,255,255,.62); --glass-2:rgba(255,255,255,.78);
-    --glass-line:rgba(255,255,255,.75);
-    --ink:#1a1a22; --ink-2:#5f5f6b; --ink-3:#9a9aa6;
-    --line:rgba(20,20,30,.08);
-    --violet:#6d5ef5; --violet-2:#9a8ef8;
-    --coral:#e8613e; --coral-soft:#f7d9cf;
-    --teal:#1d9e75; --teal-soft:#cdeee0;
-    --amber:#d99320;
-    --shadow:0 10px 40px rgba(30,30,50,.10);
-    --shadow-sm:0 4px 18px rgba(30,30,50,.07);
-    --r:22px; --r-sm:14px;
+    --bg:#ecebf1;
+    --glass:rgba(255,255,255,.66); --glass-2:rgba(255,255,255,.82);
+    --glass-line:rgba(255,255,255,.8); --line:rgba(28,18,51,.09); --line-2:rgba(28,18,51,.16);
+    --ink:#1a1330; --ink-2:#5c5570; --ink-3:#948da6;
+    --violet:#6d5ef5; --violet-2:#9a8ef8; --magenta:#c026d3;
+    --coral:#e8613e; --coralink:#8f2f18;
+    --teal:#1d9e75; --tealink:#0f6e56;
+    --amber:#c98500;
+    --shadow:0 18px 50px rgba(60,40,120,.14); --shadow-sm:0 6px 22px rgba(60,40,120,.09);
+    --r:24px; --r-sm:15px;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
   html{background:var(--bg)}
-  body{font-family:var(--sans);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;
-    background:
-      radial-gradient(1100px 700px at 15% -5%, #f3e9ff 0%, transparent 55%),
-      radial-gradient(1000px 700px at 95% 0%, #ffe9e0 0%, transparent 50%),
-      radial-gradient(900px 900px at 80% 100%, #e0f3ec 0%, transparent 55%),
-      var(--bg);
-    background-attachment:fixed;min-height:100vh}
+  body{font-family:var(--sans);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+  body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+    radial-gradient(1100px 720px at 12% -6%,#efe4ff 0%,transparent 55%),
+    radial-gradient(1000px 700px at 100% 2%,#ffe6db 0%,transparent 50%),
+    radial-gradient(950px 900px at 82% 105%,#dcf3ea 0%,transparent 55%),var(--bg)}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background-image:radial-gradient(rgba(28,18,51,.05) 1px,transparent 1.4px);background-size:26px 26px;opacity:.6}
   .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
   .num{font-variant-numeric:tabular-nums}
-  h1,h2,h3{letter-spacing:-.02em;font-weight:600;text-wrap:balance}
-  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  h1,h2,h3{letter-spacing:-.022em;font-weight:700;text-wrap:balance}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
 
-  /* glass */
-  .glass{background:var(--glass);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);
+  .glass{background:var(--glass);backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);
     border:1px solid var(--glass-line);border-radius:var(--r);box-shadow:var(--shadow)}
   .glass-sm{background:var(--glass-2);border:1px solid var(--glass-line);border-radius:var(--r-sm);box-shadow:var(--shadow-sm)}
 
-  /* nav */
   nav{position:sticky;top:0;z-index:50;padding:14px 0}
-  .navbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-radius:18px}
-  .logo{font-weight:600;font-size:16px;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
-  .logo .dot{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--violet),var(--coral))}
+  .navbar{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;border-radius:18px}
+  .logo{font-weight:700;font-size:16px;display:flex;align-items:center;gap:10px}
+  .logo .dot{width:24px;height:24px;border-radius:8px;background:linear-gradient(135deg,var(--violet),var(--magenta))}
   .nav-r{display:flex;align-items:center;gap:10px}
 
-  /* buttons */
-  .btn{font-family:inherit;font-size:14px;font-weight:500;border-radius:12px;padding:10px 18px;cursor:pointer;border:1px solid transparent;transition:transform .12s,box-shadow .2s;white-space:nowrap}
+  .btn{font-family:inherit;font-size:14px;font-weight:600;border-radius:12px;padding:11px 20px;cursor:pointer;border:1px solid transparent;transition:transform .12s,box-shadow .2s;white-space:nowrap}
   .btn:active{transform:scale(.98)}
-  .btn-primary{color:#fff;background:linear-gradient(135deg,var(--violet),var(--violet-2));box-shadow:0 6px 20px rgba(109,94,245,.35)}
-  .btn-primary:hover{box-shadow:0 8px 26px rgba(109,94,245,.45)}
+  .btn-primary{color:#fff;background:linear-gradient(135deg,var(--violet),var(--violet-2) 60%,var(--magenta));box-shadow:0 8px 24px rgba(109,94,245,.34)}
+  .btn-primary:hover{box-shadow:0 12px 30px rgba(109,94,245,.46);transform:translateY(-1px)}
   .btn-ghost{background:var(--glass-2);border:1px solid var(--glass-line);color:var(--ink)}
   .btn-ghost:hover{background:#fff}
-  .btn-lg{padding:14px 26px;font-size:15px}
+  .btn-lg{padding:15px 28px;font-size:15px}
+  .btn.wide{width:100%}
 
-  /* hero */
-  .hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:64px 0 40px}
-  .hero h1{font-size:52px;line-height:1.05;margin-bottom:18px}
-  .hero h1 .hot{background:linear-gradient(120deg,var(--coral),#f0982f);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero .lede{font-size:17px;color:var(--ink-2);max-width:30em;margin-bottom:26px}
-  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .hero .scan{display:flex;gap:8px;flex-wrap:wrap;max-width:440px;margin-bottom:14px}
-  .inp{flex:1;min-width:180px;font-family:inherit;font-size:14px;padding:13px 16px;border-radius:12px;border:1px solid var(--glass-line);background:var(--glass-2);color:var(--ink)}
+  /* ---------- HERO ---------- */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding:60px 0 44px}
+  .hero h1{font-size:52px;line-height:1.05;margin-bottom:18px;font-weight:800}
+  .hero h1 .hot{background:linear-gradient(115deg,var(--coral),#f0982f);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .lede{font-size:17px;color:var(--ink-2);max-width:30em;margin-bottom:24px}
+  .scan{max-width:460px}
+  .scanrow{display:flex;gap:8px;flex-wrap:wrap}
+  .inp{flex:1;min-width:190px;font-family:inherit;font-size:14px;padding:14px 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--glass-2);color:var(--ink);outline:none;transition:.15s}
+  .inp:focus{border-color:var(--violet-2);box-shadow:0 0 0 4px rgba(154,142,248,.18)}
   .inp::placeholder{color:var(--ink-3)}
-  .trust{font-size:13px;color:var(--ink-3);display:flex;gap:8px;flex-wrap:wrap}
+  .hint{font-size:12.5px;color:rgba(148,141,166,.7);margin-top:9px;padding-left:2px}
+  .trust{font-size:13px;color:var(--ink-3);display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
   .trust b{color:var(--ink-2);font-weight:500}
 
-  /* product preview */
   .preview{padding:20px;position:relative}
   .preview .head{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:0 4px}
-  .dots{display:flex;gap:5px}.dots i{width:9px;height:9px;border-radius:50%;background:rgba(20,20,30,.14)}
+  .dots{display:flex;gap:5px}.dots i{width:9px;height:9px;border-radius:50%;background:rgba(28,18,51,.13)}
   .preview .head span{font-size:12px;color:var(--ink-3);margin-left:6px}
-
-  .score{border-radius:18px;padding:20px 22px;position:relative;overflow:hidden;margin-bottom:12px}
-  .score.green{background:
-      radial-gradient(120% 120% at 20% 10%,#bfe9cf 0%,transparent 60%),
-      radial-gradient(120% 120% at 90% 90%,#f2e7a6 0%,transparent 55%),
-      linear-gradient(135deg,#d7efe0,#eef3d8)}
+  .score{border-radius:18px;padding:20px 22px;position:relative;overflow:hidden;margin-bottom:12px;
+    background:radial-gradient(130% 130% at 18% 8%,#bfe9cf 0,transparent 60%),radial-gradient(130% 130% at 92% 92%,#f2e7a6 0,transparent 55%),linear-gradient(135deg,#d7efe0,#eef3d8)}
   .score .lab{font-size:13px;color:#2f6b4e;margin-bottom:6px;display:flex;align-items:center;gap:8px}
-  .score .big{font-size:44px;font-weight:400;line-height:1;color:#1c3d2c}
+  .score .big{font-size:44px;font-weight:500;line-height:1;color:#1c3d2c}
   .score .cap{font-size:12px;color:#3a6b52;margin-top:8px}
-  .chip{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500}
-  .chip-teal{background:rgba(29,158,117,.16);color:#0f6e56}
+  .chip{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:600}
+  .chip-teal{background:rgba(29,158,117,.18);color:#0f6e56}
   .chip-coral{background:rgba(232,97,62,.16);color:#a5391f}
-  .chip-gray{background:rgba(20,20,30,.06);color:var(--ink-2)}
-  .chip-violet{background:rgba(109,94,245,.14);color:#4a3ac0}
-
+  .chip-gray{background:rgba(28,18,51,.06);color:var(--ink-2)}
   .prog{height:7px;border-radius:5px;background:rgba(255,255,255,.6);overflow:hidden;position:relative;margin-top:2px}
   .prog span{display:block;height:100%;background:#1d9e75;border-radius:5px}
-  .prog .mark{position:absolute;top:0;width:2px;height:7px;background:rgba(20,20,30,.3)}
-
+  .prog .mark{position:absolute;top:0;width:2px;height:7px;background:rgba(28,18,51,.3)}
   .tasklist .t{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
   .tasklist .t:first-child{border-top:0}
   .tasklist .t .txt{flex:1;font-size:13.5px;min-width:0}
   .tasklist .t .amt{font-size:13px;color:var(--ink-2);font-weight:500}
 
-  /* sections */
-  section{padding:52px 0}
+  section{padding:50px 0}
   .sec-title{font-size:32px;margin-bottom:8px}
-  .sec-sub{color:var(--ink-2);font-size:16px;margin-bottom:32px;max-width:40em}
-
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .sec-sub{color:var(--ink-2);font-size:16px;margin-bottom:30px;max-width:42em}
+  .card-pad{padding:26px 28px}
+  .metricrow{display:flex;flex-wrap:wrap;gap:34px;padding:4px 2px}
+  .metricrow .m .v{font-size:30px;font-weight:500}
+  .metricrow .m .l{font-size:13px;color:var(--ink-3);margin-top:4px}
   .praise-blame{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
   .pb-list{font-size:14px;line-height:2;color:var(--ink-2)}
-  .card-pad{padding:24px 26px}
-  .metricrow{display:flex;flex-wrap:wrap;gap:34px;padding:6px 2px}
-  .metricrow .m .v{font-size:30px;font-weight:400}
-  .metricrow .m .l{font-size:13px;color:var(--ink-3);margin-top:4px}
-
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .gap-card{padding:20px 22px}
   .gap-card .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
   .gap-card h3{font-size:17px}
-
-  /* steps */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .step{padding:22px}
-  .step .n{font-size:13px;color:var(--violet);font-weight:600;margin-bottom:10px}
-  .step h3{font-size:16px;margin-bottom:6px}
-  .step p{font-size:13.5px;color:var(--ink-2)}
-
-  /* onboarding funnel */
-  .onb{padding:30px 32px}
-  .onb .q{margin:18px 0}
-  .onb .q .ql{font-size:14px;color:var(--ink-2);margin-bottom:9px}
-  .opts{display:flex;gap:8px;flex-wrap:wrap}
-  .opt{font-size:14px;padding:9px 16px;border-radius:11px;border:1px solid var(--glass-line);background:var(--glass-2);cursor:pointer;transition:.15s}
-  .opt:hover{background:#fff}
-  .opt.on{background:linear-gradient(135deg,var(--violet),var(--violet-2));color:#fff;border-color:transparent}
-  .onb .why{font-size:12.5px;color:var(--ink-3);margin-top:6px;display:flex;gap:7px;align-items:flex-start}
-  .onb .result{margin-top:20px;padding:16px 18px;border-radius:14px;background:rgba(109,94,245,.08);border:1px solid rgba(109,94,245,.16);font-size:14px;color:#3f327f;display:none}
-  .onb .result.show{display:block}
-
-  /* pricing */
+  .step-c{padding:24px}
+  .step-c .n{font-size:20px;font-weight:700;background:linear-gradient(135deg,var(--violet),var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px}
+  .step-c h3{font-size:16px;margin-bottom:6px}
+  .step-c p{font-size:13.5px;color:var(--ink-2)}
   .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
   .price{padding:26px 24px;display:flex;flex-direction:column}
-  .price.feat{background:linear-gradient(160deg,rgba(109,94,245,.10),rgba(255,255,255,.7));border:1.5px solid rgba(109,94,245,.4)}
+  .price.feat{background:linear-gradient(160deg,rgba(109,94,245,.12),rgba(255,255,255,.7));border:1.5px solid rgba(109,94,245,.42)}
   .price .tag{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
-  .price .amt{font-size:34px;font-weight:500;margin-bottom:2px}
+  .price .amt{font-size:34px;font-weight:600;margin-bottom:2px}
   .price .amt small{font-size:15px;color:var(--ink-3);font-weight:400}
   .price .desc{font-size:14px;color:var(--ink-2);margin:10px 0 18px;flex:1}
   .price ul{list-style:none;font-size:13.5px;color:var(--ink-2)}
   .price li{padding:5px 0 5px 20px;position:relative}
   .price li:before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--teal)}
-  .badge{align-self:flex-start;font-size:11px;padding:3px 11px;border-radius:20px;background:linear-gradient(135deg,var(--violet),var(--violet-2));color:#fff;margin-bottom:10px}
-
-  /* final */
+  .badge{align-self:flex-start;font-size:11px;padding:3px 11px;border-radius:20px;background:linear-gradient(135deg,var(--violet),var(--magenta));color:#fff;margin-bottom:10px}
   .final{text-align:center;padding:56px 40px;margin-bottom:40px}
   .final h2{font-size:34px;margin-bottom:12px}
   .final p{color:var(--ink-2);margin-bottom:24px;font-size:16px}
-
   footer{padding:30px 0 50px;color:var(--ink-3);font-size:13px;text-align:center}
-  footer a{color:var(--ink-2)}
 
-  /* dashboard view */
-  .view-dash{display:none}
-  body.dash .view-land{display:none}
+  /* ---------- FUNNEL ---------- */
+  .view-fun,.view-dash{display:none}
+  body.fun .view-land,body.fun .view-dash{display:none}
+  body.fun .view-fun{display:block}
+  body.dash .view-land,body.dash .view-fun{display:none}
   body.dash .view-dash{display:block}
-  .dash-wrap{max-width:1120px;margin:0 auto;padding:20px 24px 60px}
-  .dash-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0 22px;flex-wrap:wrap}
-  .dash-top .who{display:flex;align-items:center;gap:12px}
-  .avatar{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#d7c8ff,#ffd3c4);display:flex;align-items:center;justify-content:center;font-weight:600;color:#4a3ac0}
-  .tabs{display:flex;gap:6px;padding:5px;border-radius:14px}
-  .tab{font-size:14px;font-weight:500;padding:9px 18px;border-radius:10px;cursor:pointer;color:var(--ink-2);border:none;background:transparent;transition:.15s}
-  .tab.on{background:#fff;color:var(--ink);box-shadow:var(--shadow-sm)}
-  .panel{display:none}.panel.on{display:block}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .fun-wrap{max-width:760px;margin:0 auto;padding:8px 24px 80px}
+  .progress{display:flex;gap:8px;margin:6px 0 6px}
+  .progress i{height:5px;flex:1;border-radius:99px;background:var(--line);overflow:hidden;position:relative}
+  .progress i.done::after,.progress i.cur::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--violet),var(--magenta))}
+  .progress i.cur::after{width:55%}
+  .steplabel{font-size:13px;color:var(--ink-3);font-weight:600;margin-bottom:26px}
+  .fstep{display:none;animation:fade .35s ease}
+  .fstep.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.fstep{animation:none}}
+  .fcenter{text-align:center;margin-bottom:8px}
+  .fcenter h2{font-size:34px;margin-bottom:12px;font-weight:800}
+  .fcenter p{color:var(--ink-2);max-width:34em;margin:0 auto}
+  .search{position:relative;margin-top:28px}
+  .search input{width:100%;font-size:17px;padding:17px 18px;border-radius:14px;border:1.5px solid var(--line-2);background:#fff;color:var(--ink);outline:none;font-family:inherit}
+  .search input:focus{border-color:var(--violet-2);box-shadow:0 0 0 4px rgba(154,142,248,.16)}
+  .suggest{margin-top:10px;overflow:hidden;padding:0}
+  .suggest button{display:flex;width:100%;text-align:left;gap:12px;align-items:center;background:transparent;border:0;border-bottom:1px solid var(--line);padding:14px 18px;cursor:pointer;color:var(--ink);font-family:inherit;font-size:15px}
+  .suggest button:last-child{border-bottom:0}
+  .suggest button:hover{background:rgba(109,94,245,.06)}
+  .suggest .nm{font-weight:600}.suggest .ad{font-size:13px;color:var(--ink-2)}
+  .suggest .pin{width:34px;height:34px;flex:none;border-radius:10px;background:linear-gradient(150deg,rgba(154,142,248,.25),rgba(192,38,211,.15))}
+  /* loading */
+  .loadcard{padding:30px 32px;text-align:center;margin-top:28px}
+  .spin{width:42px;height:42px;border-radius:50%;border:3px solid rgba(109,94,245,.2);border-top-color:var(--violet);margin:0 auto 16px;animation:sp 1s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .loadcard h3{font-size:20px;margin-bottom:6px}
+  .loadcard .lsub{font-size:14px;color:var(--ink-2);margin-bottom:20px}
+  .tgbox{background:rgba(109,94,245,.07);border:1px solid rgba(109,94,245,.18);border-radius:16px;padding:18px;text-align:left;max-width:460px;margin:0 auto}
+  .tgbox .tt{font-size:15px;font-weight:600;color:#4a3ac0;margin-bottom:4px}
+  .tgbox .ts{font-size:13px;color:var(--ink-2);margin-bottom:12px}
+  .tgrow{display:flex;gap:8px;flex-wrap:wrap}
+  /* audit */
+  .orghead{display:flex;align-items:center;gap:14px;margin-top:2px;margin-bottom:8px}
+  .orghead .pin{width:46px;height:46px;border-radius:13px;background:linear-gradient(150deg,var(--violet),var(--magenta));flex:none}
+  .orghead h2{font-size:24px}.orghead .ad{color:var(--ink-2);font-size:14px}
+  .audit{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
+  .metric{padding:18px 20px;border-radius:16px}
+  .metric .top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--ink-2)}
+  .metric .val{font-size:26px;font-weight:600;margin-top:6px}
+  .metric .note{font-size:13px;margin-top:4px;color:var(--ink-3)}
+  .tagx{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:.03em}
+  .bad{color:var(--coral)}.bad-bg{background:rgba(232,97,62,.15);color:#a5391f}
+  .mid{color:var(--amber)}.mid-bg{background:rgba(201,133,0,.16);color:#8a5a00}
+  .good{color:var(--teal)}.good-bg{background:rgba(29,158,117,.16);color:#0f6e56}
+  .locked{position:relative}
+  .locked .val{filter:blur(7px);opacity:.55;user-select:none}
+  .lockpill{position:absolute;top:16px;right:16px;font-size:11px;font-weight:600;color:#4a3ac0;background:rgba(109,94,245,.14);padding:3px 10px;border-radius:99px}
+  .summary{padding:18px 20px;border-radius:16px;background:linear-gradient(150deg,rgba(232,97,62,.12),rgba(192,38,211,.08));border:1px solid var(--line);font-size:15px;color:var(--coralink)}
+  .summary b{color:var(--coral)}
+  .actions{display:flex;gap:12px;margin-top:24px;align-items:center;flex-wrap:wrap}
+  .back{color:var(--ink-2);cursor:pointer;font-size:14px;font-weight:600}
+  /* survey */
+  .qcard{padding:28px 30px}
+  .q{margin:22px 0}.q:first-of-type{margin-top:8px}
+  .q .ql{font-size:15px;font-weight:600;margin-bottom:10px}
+  .opts{display:flex;gap:8px;flex-wrap:wrap}
+  .opt{font-size:14px;padding:11px 18px;border-radius:12px;border:1.5px solid var(--line-2);background:#fff;cursor:pointer;transition:.15s;font-family:inherit;color:var(--ink)}
+  .opt:hover{border-color:var(--violet-2)}
+  .opt.on{background:linear-gradient(135deg,var(--violet),var(--violet-2));color:#fff;border-color:transparent}
+  .qwhy{font-size:12.5px;color:var(--ink-3);margin-top:8px;display:flex;gap:7px}
+  /* lead */
+  .tariffs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
+  .tariff{padding:20px;border-radius:16px;border:1.5px solid var(--line-2);background:#fff;cursor:pointer;position:relative;transition:.15s}
+  .tariff:hover{border-color:var(--violet-2)}
+  .tariff.sel{border-color:var(--violet);box-shadow:0 0 0 4px rgba(154,142,248,.16)}
+  .tariff .term{font-weight:600;font-size:15px}
+  .tariff .permo{font-size:26px;font-weight:700;margin:6px 0 2px}
+  .tariff .permo small{font-size:13px;color:var(--ink-3);font-weight:400}
+  .tariff .tot{font-size:12.5px;color:var(--ink-3)}
+  .tariff .best{position:absolute;top:-10px;right:14px;font-size:10.5px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--violet),var(--magenta));padding:3px 11px;border-radius:99px}
+  .leadform{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+  .leadform .full{grid-column:1/-1}
+  .leadform input{width:100%;font-family:inherit;font-size:15px;padding:14px 16px;border-radius:12px;border:1px solid var(--line-2);background:#fff;color:var(--ink);outline:none}
+  .leadform input:focus{border-color:var(--violet-2)}
+  .fine{font-size:12.5px;color:var(--ink-3);margin-top:12px;text-align:center}
+  .donebox{text-align:center;padding:44px 20px;display:none}
+  .donebox.on{display:block}
+  .okic{width:64px;height:64px;border-radius:20px;margin:0 auto 18px;background:linear-gradient(135deg,var(--teal),#059669);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px}
+
+  /* ---------- DASHBOARD ---------- */
+  .dash-shell{max-width:1180px;margin:0 auto;padding:16px 24px 60px;display:grid;grid-template-columns:230px 1fr;gap:20px}
+  .side{padding:20px 16px;position:sticky;top:80px;align-self:start}
+  .side .who{display:flex;align-items:center;gap:11px;margin-bottom:18px;padding:0 6px}
+  .avatar{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#c9b8ff,#ffccbb);display:flex;align-items:center;justify-content:center;font-weight:700;color:#4a3ac0;flex:none}
+  .side .who .nm{font-weight:600;font-size:14px}.side .who .sub{font-size:12px;color:var(--ink-3)}
+  .snav{display:flex;flex-direction:column;gap:3px}
+  .snav button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font-family:inherit;font-size:14px;color:var(--ink-2);background:transparent;border:0;border-radius:11px;padding:11px 13px;cursor:pointer;transition:.13s}
+  .snav button:hover{background:rgba(109,94,245,.06)}
+  .snav button.on{background:#fff;color:var(--ink);font-weight:600;box-shadow:var(--shadow-sm)}
+  .snav .ico{width:8px;height:8px;border-radius:3px;background:currentColor;opacity:.55;flex:none}
+  .side .backl{margin-top:18px;font-size:13px;color:var(--ink-2);cursor:pointer;padding:0 6px}
+  .dpanel{display:none}.dpanel.on{display:block}
+  .dhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+  .dhead h2{font-size:22px}.dhead .dt{font-size:13px;color:var(--ink-3)}
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid-4{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .bigscore{padding:26px 28px;border-radius:22px;position:relative;overflow:hidden;
+    background:radial-gradient(130% 140% at 12% 4%,#c4ead2 0,transparent 58%),radial-gradient(130% 140% at 96% 96%,#f3e8a6 0,transparent 55%),linear-gradient(135deg,#d9f0e2,#eff4da)}
   .stat{padding:20px 22px}
-  .stat .v{font-size:30px;font-weight:400}
+  .stat .v{font-size:29px;font-weight:500}
   .stat .l{font-size:13px;color:var(--ink-3);margin-top:4px}
-  .bigscore{padding:26px 28px;border-radius:20px;position:relative;overflow:hidden;
-    background:
-      radial-gradient(120% 130% at 15% 5%,#bfe9cf 0%,transparent 58%),
-      radial-gradient(120% 130% at 95% 95%,#f2e7a6 0%,transparent 55%),
-      linear-gradient(135deg,#d7efe0,#eef3d8)}
-  .mbar{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .section-h{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:20px 0 12px;font-weight:600}
+  .mbar{display:flex;align-items:center;gap:12px;margin-bottom:13px}
   .mbar .nm{width:96px;font-size:14px;color:var(--ink-2)}
-  .mbar .track{flex:1;height:9px;border-radius:5px;background:rgba(20,20,30,.06);overflow:hidden}
+  .mbar .track{flex:1;height:9px;border-radius:5px;background:rgba(28,18,51,.06);overflow:hidden}
   .mbar .track span{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--violet-2),var(--violet))}
   .mbar .pct{width:48px;text-align:right;font-size:13px}
   .task-full{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
   .task-full:first-of-type{border-top:0}
-  .task-full .no{font-size:12px;color:var(--ink-3);padding-top:2px;width:16px}
+  .task-full .no{font-size:12px;color:var(--ink-3);padding-top:3px;width:16px}
   .task-full .body h3{font-size:15px;margin-bottom:3px}
   .task-full .body p{font-size:13px;color:var(--ink-2);margin-bottom:6px}
-  .task-full .src{font-size:11px;color:var(--ink-3);letter-spacing:.03em}
-  .section-h{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px}
+  .task-full .src{font-size:11px;color:var(--ink-3);letter-spacing:.02em}
 
-  @media (max-width:880px){
-    .hero{grid-template-columns:1fr;gap:28px;padding:36px 0}
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;gap:28px;padding:34px 0}
     .hero h1{font-size:38px}
-    .split,.praise-blame,.grid-2{grid-template-columns:1fr}
-    .steps{grid-template-columns:1fr 1fr}
-    .prices{grid-template-columns:1fr}
-    .grid-3{grid-template-columns:1fr}
+    .split,.praise-blame,.grid-2,.grid-3,.grid-4,.audit,.tariffs,.leadform{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}.prices{grid-template-columns:1fr}
+    .dash-shell{grid-template-columns:1fr}.side{position:static}
+    .snav{flex-direction:row;overflow-x:auto}.side .who{margin-bottom:12px}
   }
-  @media (max-width:520px){
-    .hero h1{font-size:32px}.steps{grid-template-columns:1fr}
-    .navbar .logo span.full{display:none}
-  }
+  @media(max-width:520px){.hero h1{font-size:31px}.steps{grid-template-columns:1fr}.fcenter h2{font-size:26px}}
 </style>
 </head>
 <body>
 
-<!-- ================= LANDING ================= -->
+<!-- ==================== LANDING ==================== -->
 <div class="view-land">
-
 <nav><div class="wrap"><div class="navbar glass-sm">
-  <div class="logo"><span class="dot"></span><span class="full">ИИ-маркетолог × YClients</span></div>
+  <div class="logo"><span class="dot"></span><span>ИИ-маркетолог × YClients</span></div>
   <div class="nav-r">
     <button class="btn btn-ghost" onclick="openDash()">Демо-дашборд</button>
-    <button class="btn btn-primary" onclick="scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">Разобрать салон</button>
+    <button class="btn btn-primary" onclick="openFun()">Разобрать салон</button>
   </div>
 </div></div></nav>
 
-<div class="wrap">
-  <div class="hero">
-    <div>
-      <p class="eyebrow" style="margin-bottom:16px">Для салонов на YClients</p>
-      <h1>Ваш салон теряет <span class="hot">десятки тысяч</span> каждый месяц</h1>
-      <p class="lede">На неявках и тех, кто не вернулся. Подключите YClients — покажем сумму и кому написать, чтобы вернуть.</p>
-      <div class="scan">
-        <input class="inp" placeholder="Ссылка на карточку в Яндексе" aria-label="Ссылка на карточку">
-        <button class="btn btn-primary">Разобрать мой салон</button>
+<div class="wrap"><div class="hero">
+  <div>
+    <p class="eyebrow" style="margin-bottom:16px">Для салонов на YClients</p>
+    <h1>Ваш салон теряет <span class="hot">десятки тысяч</span> каждый месяц</h1>
+    <p class="lede">На неявках и тех, кто не вернулся. Подключите YClients — покажем сумму и кому написать, чтобы вернуть.</p>
+    <div class="scan">
+      <div class="scanrow">
+        <input class="inp" id="heroInput" placeholder="Ссылка на карточку в Яндексе" aria-label="Ссылка на карточку">
+        <button class="btn btn-primary" onclick="openFun()">Разобрать мой салон</button>
       </div>
-      <div class="trust"><b>Бесплатно</b> · <b>без карты</b> · <b>первый разбор сразу</b> · вам не позвонят</div>
+      <div class="hint">Например: yandex.ru/maps/org/ваш-салон/1234567890</div>
     </div>
-
-    <div class="glass preview">
-      <div class="head"><span class="dots"><i></i><i></i><i></i></span><span>Ваш YClients знает, кто не вернётся</span></div>
-      <div class="score green">
-        <div class="lab">Перезапись <span class="chip chip-teal">4 недели роста</span></div>
-        <div style="display:flex;align-items:flex-start;gap:8px">
-          <span class="big num">18,2%</span><span class="chip chip-teal" style="margin-top:6px">+3,4</span>
-        </div>
-        <div class="prog" style="margin-top:12px"><span style="width:73%"></span><i class="mark" style="left:59%"></i></div>
-        <div class="cap">до следующей цели — 82 записи</div>
-      </div>
-      <div class="glass-sm" style="padding:14px 16px">
-        <div class="tasklist">
-          <div class="t"><span class="chip chip-coral">срочно</span><span class="txt">Мария П. — топ-клиент, пауза 34 дня</span><span class="amt num">26 500 ₽</span></div>
-          <div class="t"><span class="chip chip-gray">окна</span><span class="txt">У Полины пусто во вторник — 12 клиентов</span><span class="amt">→</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="trust"><b>Бесплатно</b> · <b>без карты</b> · <b>первый разбор сразу</b> · вам не позвонят</div>
   </div>
-</div>
-
-<!-- разбор -->
-<section><div class="wrap">
-  <h2 class="sec-title">Что видно снаружи — покажем бесплатно</h2>
-  <p class="sec-sub">Вставьте ссылку на карточку. За 40 секунд соберём то, что уже написали ваши клиенты в отзывах.</p>
-  <div class="glass card-pad">
-    <div class="metricrow" style="margin-bottom:6px">
-      <div class="m"><div class="v num">5,0</div><div class="l">442 отзыва</div></div>
-      <div class="m"><div class="v num">98,5%</div><div class="l">отвечено</div></div>
-      <div class="m"><div class="v num">9<span style="color:var(--ink-3);font-size:19px">/11</span></div><div class="l">заполнено</div></div>
-      <div class="m"><div class="v num">2%</div><div class="l">негатива в текстах</div></div>
+  <div class="glass preview">
+    <div class="head"><span class="dots"><i></i><i></i><i></i></span><span>Ваш YClients знает, кто не вернётся</span></div>
+    <div class="score">
+      <div class="lab">Перезапись <span class="chip chip-teal">4 недели роста</span></div>
+      <div style="display:flex;align-items:flex-start;gap:8px"><span class="big num">18,2%</span><span class="chip chip-teal" style="margin-top:6px">+3,4</span></div>
+      <div class="prog" style="margin-top:12px"><span style="width:73%"></span><i class="mark" style="left:59%"></i></div>
+      <div class="cap">до следующей цели — 82 записи</div>
     </div>
-    <div class="praise-blame">
-      <div class="glass-sm card-pad"><h3 style="font-size:15px;margin-bottom:8px">Хвалят</h3>
-        <div class="pb-list">Проработку мышц<br>Атмосферу и музыку<br>Чай после сеанса</div></div>
-      <div class="glass-sm card-pad" style="background:linear-gradient(160deg,rgba(232,97,62,.09),rgba(255,255,255,.6))">
-        <h3 style="font-size:15px;margin-bottom:8px;color:#a5391f">Жалуются</h3>
-        <div class="pb-list">Слышно соседнюю кабинку<br>На входе требуют паспорт<br>Администратор не извинился<br>Синяки после антицеллюлитного</div></div>
-    </div>
-    <div style="padding:16px 18px;border-radius:14px;background:rgba(232,97,62,.08);font-size:15px;color:#7a2a15">
-      Это всё, что видно снаружи. Сколько человек из-за этого не вернулось и на какую сумму — знает только ваш YClients.
-    </div>
+    <div class="glass-sm" style="padding:14px 16px"><div class="tasklist">
+      <div class="t"><span class="chip chip-coral">срочно</span><span class="txt">Мария П. — топ-клиент, пауза 34 дня</span><span class="amt num">26 500 ₽</span></div>
+      <div class="t"><span class="chip chip-gray">окна</span><span class="txt">У Полины пусто во вторник — 12 клиентов</span><span class="amt">→</span></div>
+    </div></div>
   </div>
-</div></section>
+</div></div>
 
-<!-- разрыв -->
 <section><div class="wrap">
   <h2 class="sec-title">Мы видим то, чего не видит никто</h2>
   <p class="sec-sub">Сервис отзывов видит пятёрки. YClients видит явку. Что они противоречат друг другу — видно только на стыке.</p>
   <div class="split">
-    <div class="glass gap-card">
-      <div class="top"><h3 style="flex:1">Игорь Т.</h3><span class="chip chip-coral">★ 5,0 · явка 43,8%</span></div>
-      <p style="font-size:14px;color:var(--ink-2)">Восемь отзывов, все пятёрки. Хвалят проработку мышц и чуткость. Но почти половина записей к нему не доходит — это главный разрыв салона.</p>
-    </div>
-    <div class="glass gap-card">
-      <div class="top"><h3 style="flex:1">Сергей</h3><span class="chip chip-gray">0 отзывов · 107 визитов</span></div>
-      <p style="font-size:14px;color:var(--ink-2)">Сто семь визитов и ни одного отзыва. Клиенты ходят — значит довольны, но карточка об этом не знает.</p>
-    </div>
+    <div class="glass gap-card"><div class="top"><h3 style="flex:1">Игорь Т.</h3><span class="chip chip-coral">★ 5,0 · явка 43,8%</span></div>
+      <p style="font-size:14px;color:var(--ink-2)">Восемь отзывов, все пятёрки. Хвалят проработку мышц и чуткость. Но почти половина записей к нему не доходит — это главный разрыв салона.</p></div>
+    <div class="glass gap-card"><div class="top"><h3 style="flex:1">Сергей</h3><span class="chip chip-gray">0 отзывов · 107 визитов</span></div>
+      <p style="font-size:14px;color:var(--ink-2)">Сто семь визитов и ни одного отзыва. Клиенты ходят — значит довольны, но карточка об этом не знает.</p></div>
   </div>
 </div></section>
 
-<!-- как работает -->
 <section><div class="wrap">
   <h2 class="sec-title">Как это работает</h2>
   <p class="sec-sub">Подключение по кнопке через YClients. Ничего не настраиваете руками.</p>
   <div class="steps">
-    <div class="glass step"><div class="n">01</div><h3>Подключаете YClients</h3><p>Вход по кнопке за 30 минут. Доступ по OAuth, пароли мы не видим.</p></div>
-    <div class="glass step"><div class="n">02</div><h3>Считаем спящую выручку</h3><p>Кто перестал ходить, кто не перезаписался, где простаивают мастера.</p></div>
-    <div class="glass step"><div class="n">03</div><h3>Даём задачи на день</h3><p>Кому написать сегодня и что именно. Текст готов — вы проверяете и отправляете.</p></div>
-    <div class="glass step"><div class="n">04</div><h3>Показываем, что сработало</h3><p>Сколько человек вернулось и на какую сумму. Факт, а не прогноз.</p></div>
+    <div class="glass step-c"><div class="n">01</div><h3>Подключаете YClients</h3><p>Вход по кнопке за 30 минут. Доступ по OAuth, пароли мы не видим.</p></div>
+    <div class="glass step-c"><div class="n">02</div><h3>Считаем спящую выручку</h3><p>Кто перестал ходить, кто не перезаписался, где простаивают мастера.</p></div>
+    <div class="glass step-c"><div class="n">03</div><h3>Даём задачи на день</h3><p>Кому написать сегодня и что именно. Текст готов — вы проверяете и отправляете.</p></div>
+    <div class="glass step-c"><div class="n">04</div><h3>Показываем результат</h3><p>Сколько человек вернулось и на какую сумму. Факт, а не прогноз.</p></div>
   </div>
 </div></section>
 
-<!-- онбординг-воронка -->
-<section><div class="wrap">
-  <div class="glass onb">
-    <p class="eyebrow" style="margin-bottom:8px">Настроим под ваш салон</p>
-    <h2 style="font-size:24px;margin-bottom:4px">Два вопроса — подберём тариф и онбординг</h2>
-    <p style="font-size:14px;color:var(--ink-2)">Это нужно нам, чтобы понять, с чего начать именно с вами. Отвечать необязательно.</p>
-
-    <div class="q">
-      <div class="ql">Сколько у вас точек?</div>
-      <div class="opts" data-group="pts">
-        <button class="opt" onclick="pick(this)">Одна</button>
-        <button class="opt" onclick="pick(this)">2–5</button>
-        <button class="opt" onclick="pick(this)">6 и больше</button>
-      </div>
-    </div>
-    <div class="q">
-      <div class="ql">Какая у вас CRM?</div>
-      <div class="opts" data-group="crm">
-        <button class="opt" onclick="pick(this)">YClients</button>
-        <button class="opt" onclick="pick(this)">Другая</button>
-        <button class="opt" onclick="pick(this)">Пока нет</button>
-      </div>
-      <div class="why"><span>↳</span><span>По CRM видно, сколько мы сможем показать сразу, а что — после переноса базы.</span></div>
-    </div>
-    <div class="result" id="onbResult"></div>
-  </div>
-</div></section>
-
-<!-- тарифы -->
 <section><div class="wrap">
   <h2 class="sec-title">Тарифы</h2>
   <p class="sec-sub">В 10–15 раз дешевле оклада маркетолога. Отмена в один клик.</p>
   <div class="prices">
-    <div class="glass price">
-      <div class="tag">Карта</div>
-      <div class="amt num">7 000 ₽<small> / мес</small></div>
+    <div class="glass price"><div class="tag">Карта</div><div class="amt num">7 000 ₽<small> / мес</small></div>
       <div class="desc">Всё, что видно снаружи, под контролем.</div>
-      <ul><li>Соседи и их рейтинги</li><li>Слежка за карточкой</li><li>Готовые ответы на отзывы</li></ul>
-    </div>
-    <div class="glass price feat">
-      <span class="badge">Выбор салонов</span>
-      <div class="tag">Всё</div>
-      <div class="amt num">13 000 ₽<small> / мес</small></div>
+      <ul><li>Соседи и их рейтинги</li><li>Слежка за карточкой</li><li>Готовые ответы на отзывы</li></ul></div>
+    <div class="glass price feat"><span class="badge">Выбор салонов</span><div class="tag">Всё</div><div class="amt num">13 000 ₽<small> / мес</small></div>
       <div class="desc">Карта плюс данные YClients — деньги видно поимённо.</div>
-      <ul><li>Кто ушёл и почему</li><li>Задачи на день с текстами</li><li>Возврат и его результат</li><li>Окна мастеров</li></ul>
-    </div>
-    <div class="glass price">
-      <div class="tag">Сеть</div>
-      <div class="amt">за филиал</div>
+      <ul><li>Кто ушёл и почему</li><li>Задачи на день с текстами</li><li>Возврат и его результат</li><li>Окна мастеров</li></ul></div>
+    <div class="glass price"><div class="tag">Сеть</div><div class="amt">за филиал</div>
       <div class="desc">Для сетей. Сводка по всем точкам в одном окне.</div>
-      <ul><li>Сравнение филиалов</li><li>Скидка от 5 точек</li><li>Сводка владельцу</li></ul>
-    </div>
+      <ul><li>Сравнение филиалов</li><li>Скидка от 5 точек</li><li>Сводка владельцу</li></ul></div>
   </div>
 </div></section>
 
-<!-- финал -->
-<section><div class="wrap">
-  <div class="glass final">
-    <h2>Узнайте свою спящую выручку</h2>
-    <p>Разбор карточки — бесплатно и сразу. Сумма в деньгах — после подключения YClients.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-primary btn-lg">Разобрать мой салон</button>
-      <button class="btn btn-ghost btn-lg" onclick="openDash()">Посмотреть демо-дашборд</button>
-    </div>
+<section><div class="wrap"><div class="glass final">
+  <h2>Узнайте свою спящую выручку</h2>
+  <p>Разбор карточки — бесплатно и сразу. Сумма в деньгах — после подключения YClients.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <button class="btn btn-primary btn-lg" onclick="openFun()">Разобрать мой салон</button>
+    <button class="btn btn-ghost btn-lg" onclick="openDash()">Посмотреть демо-дашборд</button>
   </div>
-</div></section>
+</div></div></section>
 
 <footer><div class="wrap">ИИ-маркетолог × YClients · демо-версия · данные обезличены</div></footer>
 </div>
 
-<!-- ================= DASHBOARD ================= -->
+<!-- ==================== FUNNEL ==================== -->
+<div class="view-fun">
+<nav><div class="wrap"><div class="navbar glass-sm">
+  <div class="logo"><span class="dot"></span><span>Разбор салона</span></div>
+  <button class="btn btn-ghost" onclick="closeAll()">← На главную</button>
+</div></div></nav>
+<div class="fun-wrap">
+  <div class="progress"><i class="cur" data-s="1"></i><i data-s="2"></i><i data-s="3"></i><i data-s="4"></i></div>
+  <div class="steplabel" id="steplabel">Шаг 1 из 4 · Найдите свой салон</div>
+
+  <!-- STEP 1 -->
+  <section class="fstep on" data-step="1">
+    <div class="fcenter"><h2>Найдите свой салон</h2><p>Вставьте ссылку на карточку — за 40 секунд покажем, на что жалуются ваши клиенты и где спит выручка.</p></div>
+    <div class="search"><input id="q" placeholder="Ссылка на Яндекс.Картах или название" autocomplete="off"></div>
+    <div class="hint" style="margin-top:9px">Например: yandex.ru/maps/org/ваш-салон/1234567890 · или начните вводить название</div>
+    <div class="glass suggest" id="suggest" style="display:none"></div>
+  </section>
+
+  <!-- LOADING -->
+  <section class="fstep" data-step="load">
+    <div class="glass loadcard">
+      <div class="spin"></div>
+      <h3>Собираем разбор вашего салона</h3>
+      <div class="lsub">Читаем отзывы и карточку — обычно это занимает до 40 секунд.</div>
+      <div class="tgbox">
+        <div class="tt">Не ждите у экрана</div>
+        <div class="ts">Оставьте телеграм — пришлём готовый разбор в личные сообщения, как только будет готов.</div>
+        <div class="tgrow">
+          <input class="inp" id="tg1" placeholder="@ваш телеграм" style="background:#fff">
+          <button class="btn btn-primary" onclick="tgSaved('tg1')">Прислать в телеграм</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2: AUDIT -->
+  <section class="fstep" data-step="2">
+    <div class="orghead"><span class="pin"></span><div><h2 id="a-name">—</h2><div class="ad" id="a-addr">—</div></div></div>
+    <p style="color:var(--ink-2);font-size:15px">Просканировали карточку в геосервисах. Вот что видно снаружи и где вы проседаете:</p>
+    <div class="audit glass-sm" style="background:transparent;box-shadow:none;border:0;padding:0" id="audit"></div>
+    <div class="summary" id="summary"></div>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="goFun(3)">Дальше — настроим под вас →</button>
+      <span class="back" onclick="goFun(1)">← назад</span>
+    </div>
+  </section>
+
+  <!-- STEP 3: ONBOARDING SURVEY -->
+  <section class="fstep" data-step="3">
+    <div class="fcenter"><h2>Настроим под ваш салон</h2><p>Два вопроса — поймём, с чего начать именно с вами. Это нужно нам для онбординга.</p></div>
+    <div class="glass qcard">
+      <div class="q"><div class="ql">Сколько у вас точек?</div>
+        <div class="opts" data-group="pts"><button class="opt" onclick="pick(this)">Одна</button><button class="opt" onclick="pick(this)">2–5</button><button class="opt" onclick="pick(this)">6 и больше</button></div></div>
+      <div class="q"><div class="ql">Какая у вас CRM?</div>
+        <div class="opts" data-group="crm"><button class="opt" onclick="pick(this)">YClients</button><button class="opt" onclick="pick(this)">Другая</button><button class="opt" onclick="pick(this)">Пока нет</button></div>
+        <div class="qwhy"><span>↳</span><span>По CRM видно, что покажем сразу, а что после переноса базы.</span></div></div>
+      <div class="q"><div class="ql">Куда прислать разбор?</div>
+        <div class="tgrow"><input class="inp" id="tg2" placeholder="@ваш телеграм" style="background:#fff;max-width:300px"><button class="btn btn-ghost" onclick="tgSaved('tg2')">Сохранить</button></div>
+        <div class="qwhy"><span>↳</span><span>Пришлём разбор один раз. Без регулярных сообщений.</span></div></div>
+    </div>
+    <div class="actions"><button class="btn btn-primary" onclick="goFun(4)">Показать тариф →</button><span class="back" onclick="goFun(2)">← назад</span></div>
+  </section>
+
+  <!-- STEP 4: TARIFF + LEAD -->
+  <section class="fstep" data-step="4">
+    <div id="offer">
+      <div class="fcenter"><h2 id="offerTitle">Ваш тариф</h2><p id="offerSub">Начать можно с месяца, без обязательств.</p></div>
+      <div class="tariffs" id="tariffs">
+        <div class="tariff" data-t="1"><div class="term">1 месяц</div><div class="permo num">13 000 ₽<small>/мес</small></div><div class="tot">без обязательств</div></div>
+        <div class="tariff sel" data-t="6"><span class="best">Популярный</span><div class="term">6 месяцев</div><div class="permo num">11 000 ₽<small>/мес</small></div><div class="tot">66 000 ₽ · −15%</div></div>
+        <div class="tariff" data-t="12"><div class="term">12 месяцев</div><div class="permo num">9 500 ₽<small>/мес</small></div><div class="tot">114 000 ₽ · −27%</div></div>
+      </div>
+      <form class="leadform" id="lead" novalidate>
+        <input class="full" name="name" placeholder="Ваше имя" required>
+        <input name="contact" id="leadContact" placeholder="Телефон или Telegram" required>
+        <div class="full"><button class="btn btn-primary wide" type="submit">Оставить заявку</button></div>
+      </form>
+      <div class="fine">Свяжемся в течение рабочего дня. Без спама.</div>
+      <div class="actions" style="justify-content:center"><span class="back" onclick="goFun(3)">← назад</span></div>
+    </div>
+    <div class="donebox glass" id="done" style="border-radius:24px">
+      <div class="okic">✓</div><h2 style="font-size:28px">Заявка принята</h2>
+      <p style="color:var(--ink-2);margin-top:8px" id="doneMsg">Собираем разбор и свяжемся с вами в течение дня.</p>
+    </div>
+  </section>
+</div>
+</div>
+
+<!-- ==================== DASHBOARD ==================== -->
 <div class="view-dash">
 <nav><div class="wrap"><div class="navbar glass-sm">
-  <div class="logo"><span class="dot"></span><span class="full">Демо-дашборд</span></div>
-  <div class="nav-r"><button class="btn btn-ghost" onclick="closeDash()">← На лендинг</button></div>
+  <div class="logo"><span class="dot"></span><span>Демо-дашборд</span></div>
+  <button class="btn btn-ghost" onclick="closeAll()">← На лендинг</button>
 </div></div></nav>
-
-<div class="dash-wrap">
-  <div class="dash-top">
-    <div class="who">
-      <div class="avatar">ДС</div>
-      <div><div style="font-weight:600">Демо-салон</div><div style="font-size:13px;color:var(--ink-3)">17 июля · обновлено сегодня</div></div>
+<div class="dash-shell">
+  <aside class="glass side">
+    <div class="who"><div class="avatar">ДС</div><div><div class="nm">Демо-салон</div><div class="sub">Черёмушки</div></div></div>
+    <div class="snav">
+      <button class="on" onclick="dtab(this,'d-over')"><span class="ico"></span>Обзор</button>
+      <button onclick="dtab(this,'d-mast')"><span class="ico"></span>Мастера</button>
+      <button onclick="dtab(this,'d-task')"><span class="ico"></span>Задачи на день</button>
     </div>
-    <div class="tabs glass-sm">
-      <button class="tab on" onclick="tab(this,'p-over')">Обзор</button>
-      <button class="tab" onclick="tab(this,'p-mast')">Мастера</button>
-      <button class="tab" onclick="tab(this,'p-task')">Задачи</button>
-    </div>
-  </div>
+    <div class="backl" onclick="closeAll()">← На лендинг</div>
+  </aside>
 
-  <!-- обзор -->
-  <div class="panel on" id="p-over">
-    <div class="grid-2" style="margin-bottom:16px">
-      <div class="glass bigscore">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          <span style="font-size:13px;color:#2f6b4e">Перезапись</span>
-          <span class="chip chip-teal">4 недели роста</span>
+  <main>
+    <!-- ОБЗОР -->
+    <div class="dpanel on" id="d-over">
+      <div class="dhead"><h2>Обзор</h2><span class="dt">17 июля · обновлено сегодня</span></div>
+      <div class="grid-2" style="margin-bottom:16px">
+        <div class="bigscore">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:13px;color:#2f6b4e">Перезапись</span><span class="chip chip-teal">4 недели роста</span></div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><span style="font-size:48px;font-weight:500;line-height:1;color:#1c3d2c" class="num">18,2%</span><span class="chip chip-teal" style="margin-top:8px">+3,4</span></div>
+          <div class="prog" style="margin-top:14px"><span style="width:73%"></span><i class="mark" style="left:59%"></i></div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:#3a6b52"><span>июнь · 14,8%</span><span>цель · 25%</span></div>
+          <div style="font-size:13px;color:#2f6b4e;margin-top:12px">Каждый пункт — около 12 записей. До цели 82 записи.</div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:8px">
-          <span style="font-size:46px;font-weight:400;line-height:1;color:#1c3d2c" class="num">18,2%</span>
-          <span class="chip chip-teal" style="margin-top:8px">+3,4</span>
+        <div class="grid-4">
+          <div class="glass stat"><div class="v num">67,2%</div><div class="l">явка</div></div>
+          <div class="glass stat"><div class="v num">472</div><div class="l">клиента</div></div>
+          <div class="glass stat"><div class="v num">794</div><div class="l">визита</div></div>
+          <div class="glass stat"><div class="v num" style="color:var(--teal)">7<span style="font-size:17px;color:var(--ink-3)"> / 31</span></div><div class="l">вернулось за 30 дней</div></div>
         </div>
-        <div class="prog" style="margin-top:14px"><span style="width:73%"></span><i class="mark" style="left:59%"></i></div>
-        <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:#3a6b52">
-          <span>июнь · 14,8%</span><span>следующая цель · 25%</span>
-        </div>
-        <div style="font-size:13px;color:#2f6b4e;margin-top:12px">Каждый пункт — около 12 записей в месяц. До цели 82 записи.</div>
       </div>
-      <div class="grid-2" style="grid-template-columns:1fr 1fr;gap:16px">
-        <div class="glass stat"><div class="v num">67,2%</div><div class="l">явка</div></div>
-        <div class="glass stat"><div class="v num">472</div><div class="l">клиента</div></div>
-        <div class="glass stat"><div class="v num">794</div><div class="l">визита</div></div>
-        <div class="glass stat"><div class="v num" style="color:var(--teal)">7<span style="font-size:18px;color:var(--ink-3)"> / 31</span></div><div class="l">вернулось за 30 дней</div></div>
+      <p class="section-h">Кто уходит — каждая цифра открывает список</p>
+      <div class="grid-3" style="margin-bottom:16px">
+        <div class="glass stat"><div class="v num">386</div><div class="l">не перезаписались · 1,6 млн ₽</div></div>
+        <div class="glass stat"><div class="v num">52</div><div class="l">топ-20% без записи · 597 тыс ₽</div></div>
+        <div class="glass stat"><div class="v num">456</div><div class="l">не оставили отзыв</div></div>
+      </div>
+      <div class="glass card-pad" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px"><h3 style="font-size:15px;margin-bottom:3px">Почему не возвращаются</h3><p style="font-size:13px;color:var(--ink-2)">Звукоизоляция · паспорт на входе · администраторы</p></div>
+        <button class="btn btn-ghost">Разбор</button>
       </div>
     </div>
 
-    <p class="section-h">Кто уходит — каждая цифра открывает список</p>
-    <div class="grid-3" style="margin-bottom:16px">
-      <div class="glass stat"><div class="v num">386</div><div class="l">не перезаписались · 1,6 млн ₽</div></div>
-      <div class="glass stat"><div class="v num">52</div><div class="l">топ-20% без записи · 597 тыс ₽</div></div>
-      <div class="glass stat"><div class="v num">456</div><div class="l">не оставили отзыв</div></div>
+    <!-- МАСТЕРА -->
+    <div class="dpanel" id="d-mast">
+      <div class="dhead"><h2>Мастера</h2><span class="dt">загрузка и разрывы</span></div>
+      <div class="glass card-pad" style="margin-bottom:16px">
+        <p class="section-h" style="margin-top:0">Загрузка — доля занятого времени в расписании</p>
+        <div class="mbar"><span class="nm">Виктория</span><div class="track"><span style="width:81%"></span></div><span class="pct num">80,9%</span></div>
+        <div class="mbar"><span class="nm">Игорь Т.</span><div class="track"><span style="width:74%"></span></div><span class="pct num">74%</span></div>
+        <div class="mbar"><span class="nm">Полина</span><div class="track"><span style="width:54%"></span></div><span class="pct num">54%</span></div>
+        <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <p style="flex:1;min-width:200px;font-size:13.5px;color:var(--ink-2)">У Полины пусто 46% времени. Двенадцать её клиентов не были больше 40 дней.</p>
+          <button class="btn btn-primary">Написать им</button></div>
+      </div>
+      <p class="section-h">Разрывы — отзывы против явки</p>
+      <div class="grid-2">
+        <div class="glass gap-card"><div class="top"><h3 style="flex:1">Игорь Т.</h3><span class="chip chip-coral">★ 5,0 · явка 43,8%</span></div>
+          <p style="font-size:14px;color:var(--ink-2)">Восемь отзывов, все пятёрки. Половина записей к нему не доходит — главный разрыв салона.</p></div>
+        <div class="glass gap-card"><div class="top"><h3 style="flex:1">Сергей</h3><span class="chip chip-gray">0 отзывов · 107 визитов</span></div>
+          <p style="font-size:14px;color:var(--ink-2)">Сто семь визитов и ни одного отзыва. Клиенты довольны, но карточка об этом не знает.</p></div>
+      </div>
     </div>
-    <div class="glass card-pad" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-      <div style="flex:1;min-width:200px"><h3 style="font-size:15px;margin-bottom:3px">Почему не возвращаются</h3>
-        <p style="font-size:13px;color:var(--ink-2)">Звукоизоляция · паспорт на входе · администраторы</p></div>
-      <button class="btn btn-ghost">Разбор</button>
-    </div>
-  </div>
 
-  <!-- мастера -->
-  <div class="panel" id="p-mast">
-    <div class="glass card-pad" style="margin-bottom:16px">
-      <p class="section-h">Загрузка — доля занятого времени в расписании</p>
-      <div class="mbar"><span class="nm">Виктория</span><div class="track"><span style="width:81%"></span></div><span class="pct num">80,9%</span></div>
-      <div class="mbar"><span class="nm">Игорь Т.</span><div class="track"><span style="width:74%"></span></div><span class="pct num">74%</span></div>
-      <div class="mbar"><span class="nm">Полина</span><div class="track"><span style="width:54%"></span></div><span class="pct num">54%</span></div>
-      <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <p style="flex:1;min-width:200px;font-size:13.5px;color:var(--ink-2)">У Полины пусто 46% времени. Двенадцать её клиентов не были больше 40 дней.</p>
-        <button class="btn btn-primary">Написать им</button>
+    <!-- ЗАДАЧИ -->
+    <div class="dpanel" id="d-task">
+      <div class="dhead"><h2>Задачи на день</h2><span class="dt">4 задачи · тексты готовы · 95 200 ₽</span></div>
+      <div class="glass card-pad">
+        <div class="task-full"><span class="no num">1</span><div class="body" style="flex:1"><h3>Написать Марии П. · 26 500 ₽</h3><p>Ходила к Наталье раз в три недели. Наталья уволилась 2 июня. Не была 34 дня.</p><span class="src">источник · CRM: мастер × клиент</span></div><button class="btn btn-primary">Отправить</button></div>
+        <div class="task-full"><span class="no num">2</span><div class="body" style="flex:1"><h3>Попросить отзыв у 20 клиентов Сергея</h3><p>107 визитов, ни одного отзыва. Рейтинг вырастет, карточка поднимется.</p><span class="src">источник · CRM × карта</span></div><button class="btn btn-primary">Отправить</button></div>
+        <div class="task-full"><span class="no num">3</span><div class="body" style="flex:1"><h3>Написать 12 клиентам Полины про вторник</h3><p>У неё пусто 46% времени. Эти 12 не были больше 40 дней.</p><span class="src">источник · CRM: расписание × сегмент</span></div><button class="btn btn-primary">Отправить</button></div>
+        <div class="task-full"><span class="no num">4</span><div class="body" style="flex:1"><h3>Проверить ответ на отзыв от 16 июля</h3><p>Жалуется на звукоизоляцию. Черновик готов, нужна ваша правка.</p><span class="src">источник · карта: новый отзыв</span></div><button class="btn btn-ghost">Проверить</button></div>
+        <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:6px;display:flex;align-items:center;gap:10px"><span style="flex:1;font-size:14px;color:var(--ink-2)">Вчера сделано 4 из 4</span><span class="chip chip-teal">серия не прервана</span></div>
       </div>
     </div>
-    <p class="section-h">Разрывы — отзывы против явки</p>
-    <div class="grid-2">
-      <div class="glass gap-card">
-        <div class="top"><h3 style="flex:1">Игорь Т.</h3><span class="chip chip-coral">★ 5,0 · явка 43,8%</span></div>
-        <p style="font-size:14px;color:var(--ink-2)">Восемь отзывов, все пятёрки. Половина записей к нему не доходит — главный разрыв салона.</p>
-      </div>
-      <div class="glass gap-card">
-        <div class="top"><h3 style="flex:1">Сергей</h3><span class="chip chip-gray">0 отзывов · 107 визитов</span></div>
-        <p style="font-size:14px;color:var(--ink-2)">Сто семь визитов и ни одного отзыва. Клиенты довольны, но карточка об этом не знает.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- задачи -->
-  <div class="panel" id="p-task">
-    <div class="glass card-pad">
-      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
-        <h3 style="font-size:18px">Что делать сегодня</h3>
-        <span style="font-size:13px;color:var(--ink-3)">4 задачи · тексты готовы · 95 200 ₽</span>
-      </div>
-      <div class="task-full"><span class="no num">1</span><div class="body" style="flex:1">
-        <h3>Написать Марии П. · 26 500 ₽</h3>
-        <p>Ходила к Наталье раз в три недели. Наталья уволилась 2 июня. Не была 34 дня.</p>
-        <span class="src">источник · CRM: мастер × клиент</span></div>
-        <button class="btn btn-primary">Отправить</button></div>
-      <div class="task-full"><span class="no num">2</span><div class="body" style="flex:1">
-        <h3>Попросить отзыв у 20 клиентов Сергея</h3>
-        <p>107 визитов, ни одного отзыва. Рейтинг вырастет, карточка поднимется.</p>
-        <span class="src">источник · CRM × карта</span></div>
-        <button class="btn btn-primary">Отправить</button></div>
-      <div class="task-full"><span class="no num">3</span><div class="body" style="flex:1">
-        <h3>Написать 12 клиентам Полины про вторник</h3>
-        <p>У неё пусто 46% времени. Эти 12 не были больше 40 дней.</p>
-        <span class="src">источник · CRM: расписание × сегмент</span></div>
-        <button class="btn btn-primary">Отправить</button></div>
-      <div class="task-full"><span class="no num">4</span><div class="body" style="flex:1">
-        <h3>Проверить ответ на отзыв от 16 июля</h3>
-        <p>Жалуется на звукоизоляцию. Черновик готов, нужна ваша правка.</p>
-        <span class="src">источник · карта: новый отзыв</span></div>
-        <button class="btn btn-ghost">Проверить</button></div>
-      <div style="border-top:1px solid var(--line);padding-top:14px;margin-top:6px;display:flex;align-items:center;gap:10px">
-        <span style="flex:1;font-size:14px;color:var(--ink-2)">Вчера сделано 4 из 4</span>
-        <span class="chip chip-teal">серия не прервана</span>
-      </div>
-    </div>
-  </div>
+  </main>
 </div>
 </div>
 
 <script>
-  function openDash(){document.body.classList.add('dash');scrollTo(0,0)}
-  function closeDash(){document.body.classList.remove('dash');scrollTo(0,0)}
-  function tab(btn,id){
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  var $=function(s){return document.querySelector(s)};
+  function scrTop(){window.scrollTo({top:0,behavior:'smooth'})}
+  function closeAll(){document.body.classList.remove('dash','fun');scrTop()}
+  function openDash(){document.body.classList.remove('fun');document.body.classList.add('dash');scrTop()}
+  function openFun(){document.body.classList.remove('dash');document.body.classList.add('fun');goFun(1);scrTop()}
+
+  function dtab(btn,id){
+    document.querySelectorAll('.snav button').forEach(function(b){b.classList.remove('on')});
+    document.querySelectorAll('.dpanel').forEach(function(p){p.classList.remove('on')});
     btn.classList.add('on');document.getElementById(id).classList.add('on');
   }
-  const picks={};
+
+  // ----- funnel data -----
+  var ORGS=[
+    {name:"SENSMOOD",addr:"Москва, Черёмушки · салон красоты",rating:4.6,fresh:9,answered:34,fill:72},
+    {name:"Персона",addr:"Москва, Тверская · сеть салонов",rating:4.3,fresh:5,answered:12,fill:65},
+    {name:"Beauty Bar",addr:"Санкт-Петербург, Невский · барбершоп",rating:4.7,fresh:22,answered:55,fill:80}
+  ];
+  var q=$('#q'),sug=$('#suggest'),current=null;
+  function renderSug(list){
+    if(!list.length){sug.style.display='none';return}
+    sug.innerHTML=list.map(function(o){return '<button data-i="'+ORGS.indexOf(o)+'"><span class="pin"></span><span><span class="nm">'+o.name+'</span><br><span class="ad">'+o.addr+'</span></span></button>'}).join('');
+    sug.style.display='block';
+    sug.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){startScan(ORGS[+b.dataset.i])})});
+  }
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase();
+    if(v.length<2){sug.style.display='none';return}
+    var m=ORGS.filter(function(o){return o.name.toLowerCase().indexOf(v)>-1||o.addr.toLowerCase().indexOf(v)>-1});
+    renderSug(m.length?m:[ORGS[0]]);
+  });
+
+  function startScan(o){current=o;showStep('load');scrTop();setTimeout(function(){buildAudit(o);goFun(2)},2600)}
+
+  function st(v,g,m,inv){var a,b;if(inv){a=v<=g;b=v<=m}else{a=v>=g;b=v>=m}return a?'good':(b?'mid':'bad')}
+  function metric(label,val,note,s,locked){
+    var tag=s==='good'?'ОК':(s==='mid'?'Средне':'Слабо');
+    if(locked)return '<div class="metric glass-sm locked"><div class="top"><span>'+label+'</span></div><div class="val num">'+val+'</div><div class="note">'+note+'</div><span class="lockpill">после YClients</span></div>';
+    return '<div class="metric glass-sm"><div class="top"><span>'+label+'</span><span class="tagx '+s+'-bg">'+tag+'</span></div><div class="val '+s+' num">'+val+'</div><div class="note">'+note+'</div></div>';
+  }
+  function buildAudit(o){
+    $('#a-name').textContent=o.name;$('#a-addr').textContent=o.addr;
+    var sR=st(o.rating,4.7,4.5),sF=st(o.fresh,20,10),sA=st(o.answered,60,40),sFl=st(o.fill,85,70);
+    var html=[
+      metric('Рейтинг','★ '+o.rating.toFixed(1),'Салоны рядом — в среднем 4.8',sR),
+      metric('Свежих отзывов за месяц',o.fresh,'Нужны новые каждую неделю',sF),
+      metric('Ответы на отзывы',o.answered+'%','Без ответов карточка теряет доверие',sA),
+      metric('Заполненность профиля',o.fill+'%','Услуги, фото, часы, описание',sFl),
+      metric('Перезапись','18,2%','Сколько клиентов вернулось — видно в YClients','',true),
+      metric('Спящая выручка','1,6 млн ₽','Кто не вернулся и на сколько','',true)
+    ].join('');
+    $('#audit').innerHTML=html;
+    var reds=[sR,sF,sA,sFl].filter(function(x){return x==='bad'}).length;
+    var mids=[sR,sF,sA,sFl].filter(function(x){return x==='mid'}).length;
+    $('#summary').innerHTML='Нашли <b>'+(reds+mids)+' зон роста</b> снаружи ('+reds+' слабых, '+mids+' средних). Но главное — спящая выручка внутри YClients. Покажем её, когда подключите.';
+    $('#leadContact')&&($('#leadContact').value='');
+  }
+
+  // survey picks
+  var picks={};
   function pick(el){
-    const g=el.parentElement.dataset.group;
-    el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.remove('on'));
+    var g=el.parentElement.dataset.group;
+    el.parentElement.querySelectorAll('.opt').forEach(function(o){o.classList.remove('on')});
     el.classList.add('on');picks[g]=el.textContent;
-    if(picks.pts&&picks.crm){
-      const r=document.getElementById('onbResult');
-      let msg;
-      if(picks.crm==='YClients') msg='Подходит тариф «Всё» — подключим YClients и покажем спящую выручку поимённо сразу.';
-      else if(picks.crm==='Пока нет') msg='Начнём с тарифа «Карта»: разбор отзывов и соседей без CRM. YClients подключим, когда будете готовы.';
-      else msg='Перенесём вашу базу — покажем, что сможем сразу, а что после переноса. Подберём под это онбординг.';
-      if(picks.pts==='6 и больше') msg+=' Для сети посчитаем цену за филиал.';
-      r.textContent=msg;r.classList.add('show');
+  }
+  function tgSaved(id){var v=$('#'+id).value.trim();if(!v){$('#'+id).focus();return}$('#'+id).value='';$('#'+id).placeholder='Сохранено ✓ '+v}
+
+  // tariffs
+  document.querySelectorAll('#tariffs .tariff').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('#tariffs .tariff').forEach(function(x){x.classList.remove('sel')});t.classList.add('sel')})});
+  $('#lead').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=$('#lead [name=name]'),c=$('#lead [name=contact]');
+    if(!n.value.trim()||!c.value.trim()){(!n.value.trim()?n:c).focus();return}
+    $('#offer').style.display='none';$('#done').classList.add('on');scrTop();
+  });
+
+  // steps
+  var LBL={1:'Найдите свой салон',2:'Разбор карточки',3:'Настроим под вас',4:'Тариф и заявка'};
+  function showStep(key){document.querySelectorAll('.fstep').forEach(function(s){s.classList.toggle('on',s.dataset.step===String(key))})}
+  function goFun(n){
+    showStep(n);
+    document.querySelectorAll('.progress i').forEach(function(i){var s=+i.dataset.s;i.classList.toggle('done',s<n);i.classList.toggle('cur',s===n)});
+    $('#steplabel').textContent='Шаг '+n+' из 4 · '+LBL[n];
+    if(n===4){
+      var crm=picks.crm,pts=picks.pts,t=$('#offerTitle'),su=$('#offerSub');
+      if(crm==='Пока нет'){t.textContent='Начнём с тарифа «Карта» — 7 000 ₽';su.textContent='Разбор отзывов и соседей без CRM. YClients подключим, когда будете готовы.'}
+      else if(crm==='Другая'){t.textContent='Тариф «Всё» — 13 000 ₽, с переносом базы';su.textContent='Перенесём вашу базу и покажем спящую выручку.'}
+      else{t.textContent='Тариф «Всё» — 13 000 ₽';su.textContent='Подключим YClients и покажем спящую выручку поимённо.'}
+      if(pts==='6 и больше')su.textContent+=' Для сети посчитаем цену за филиал.';
     }
+    scrTop();
   }
 </script>
 </body>
